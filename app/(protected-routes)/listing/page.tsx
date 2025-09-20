@@ -421,7 +421,7 @@ const ListingPage = () => {
               <div className="flex items-center gap-4">
                 <span className="font-medium text-lg">128 homes</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">Sort by:</span>
+                  <span className="text-sm text-gray-900">Sort by:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
@@ -459,14 +459,14 @@ const ListingPage = () => {
                     <div className="p-4">
                       {/* Title and location */}
                       <h2 className="text-lg font-semibold text-gray-900">{house.title}</h2>
-                      <p className="text-sm text-gray-600 mb-3">{house.location}</p>
+                      <p className="text-sm text-gray-900 mb-3">{house.location}</p>
                       
                       {/* Home type and host type tags */}
                       <div className="flex gap-2 mb-2">
-                        <span className="inline-block text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+                        <span className="inline-block text-xs bg-blue-200 text-blue-900 px-2 py-1 rounded">
                           {house.type}
                         </span>
-                        <span className="inline-block text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
+                        <span className="inline-block text-xs bg-blue-200 text-blue-900 px-2 py-1 rounded">
                           {house.host}
                         </span>
                       </div>
@@ -517,7 +517,7 @@ const ListingPage = () => {
                             EU citizens only
                           </span>
                           {house.isVerified && (
-                            <span className="inline-block bg-blue-100 text-blue-800 px-2 py-0.5 rounded ml-2">
+                            <span className="inline-block bg-blue-200 text-blue-900 px-2 py-0.5 rounded ml-2">
                               ✓ verified
                             </span>
                           )}
@@ -536,7 +536,7 @@ const ListingPage = () => {
                 ))
               ) : (
                 <div className="col-span-3 py-12 text-center">
-                  <p className="text-gray-600">No houses match your filters. Try adjusting your search criteria.</p>
+                  <p className="text-gray-900">No houses match your filters. Try adjusting your search criteria.</p>
                 </div>
               )}
             </div>
