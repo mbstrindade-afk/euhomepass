@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  password  String
+  name      String?
+  createdAt DateTime  @default(now())
+  
+  // Chat related fields
+  sentMessages     Message[]      @relation("SentMessages")
+  receivedMessages Message[]      @relation("ReceivedMessages")
+  sentConversations Conversation[] @relation("ConversationSender")
+  receivedConversations Conversation[] @relation("ConversationReceiver")
+  
+  // Other relationships
+  sessions Session[]
+  privacySettings PrivacySettings?
+  notificationSettings NotificationSettings?
+  listings Listing[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  createdAt DateTime @default(now())
+  userAgent String?
+  ip        String?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PrivacySettings {
+  userId    String  @id
+  showFullName Boolean @default(false)
+  showNeighborhood Boolean @default(true)
+  messagesFromVerifiedOnly Boolean @default(true)
+  shareEmailWithMatches Boolean @default(false)
+  sharePhoneWithMatches Boolean @default(false)
+  language String @default("en")
+  timezone String @default("Europe/Lisbon")
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model NotificationSettings {
+  userId    String  @id
+  channelEmail Boolean @default(true)
+  channelPush Boolean @default(true)
+  channelInApp Boolean @default(true)
+  bookingUpdates String @default("mandatory")
+  messages String @default("on")
+  verificationSafety String @default("on")
+  matchSuggestions String @default("digest_weekly")
+  fundDigest String @default("off")
+  productNews String @default("off")
+  policyChanges String @default("mandatory")
+  quietHoursStart String @default("22:00")
+  quietHoursEnd String @default("08:00")
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Listing {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  city        String
+  country     String
+  type        String   // Apartment, House, etc.
+  bedrooms    Int
+  bathrooms   Int
+  area        Float
+  images      Json     // Array of image URLs
+  amenities   Json     // Array of amenity strings
+  price       Json     // Structured JSON with amount, currency, period
+  hostId      String
+  hostName    String?
+  hostRating  Float    @default(0)
+  isActive    Boolean  @default(true)
+  isVerified  Boolean  @default(false)
+  euOnly      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Host relationship
+  host        User     @relation(fields: [hostId], references: [id])
+  
+  // Chat relationship
+  conversations Conversation[]
+}
+
+// Chat models
+model Conversation {
+  id            String    @id @default(cuid())
+  senderId      String
+  receiverId    String
+  listingId     String?
+  subject       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relationships
+  sender        User      @relation("ConversationSender", fields: [senderId], references: [id])
+  receiver      User      @relation("ConversationReceiver", fields: [receiverId], references: [id])
+  listing       Listing?  @relation(fields: [listingId], references: [id])
+  messages      Message[]
+
+  // Status tracking
+  lastReadBySender    DateTime?
+  lastReadByReceiver  DateTime?
+}
+
+model Message {
+  id              String       @id @default(cuid())
+  conversationId  String
+  senderId        String
+  receiverId      String
+  content         String
+  createdAt       DateTime     @default(now())
+  isRead          Boolean      @default(false)
+  readAt          DateTime?
+  
+  // Relationships
+  conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender          User         @relation("SentMessages", fields: [senderId], references: [id])
+  receiver        User         @relation("ReceivedMessages", fields: [receiverId], references: [id])
+}

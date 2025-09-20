@@ -1,0 +1,19 @@
+{
+  "brand": "HomePass",
+  "eu_only": "🇪🇺 EU-only",
+  "members_verified": "✅ Members verified",
+  "insurance_included": "🛡️ Insurance included up to €1,000/stay",
+  "enter": "Sign in",
+  "create_account": "Create account",
+  "skip_to_content": "Skip to content",
+  "terms": "Terms & Conditions",
+  "privacy": "Privacy",
+  "accept_terms": "I have read and accept the <1>Terms & Conditions</1> and <3>Privacy Policy</3>.",
+  "eu_community_platform": "EU Community Platform",
+  "trusted_housing": "Building Europe’s first trusted housing community.",
+  "lisbon": "Lisbon, Portugal",
+  "contact": "Contact",
+  "product": "Product",
+  "legal": "Legal",
+  "footer_copyright": "© {{year}} HomePass"
+}

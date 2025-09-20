@@ -1,0 +1,18 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Primeiro personagem (homem) -->
+  <circle cx="28" cy="24" r="6" fill="#D4A574" stroke="#8B6F47" stroke-width="1.5"/>
+  <rect x="24" y="32" width="8" height="12" fill="#87CEEB" rx="1"/>
+  <rect x="25.5" y="36" width="5" height="6" fill="#4682B4"/>
+  <path d="M 28 30 L 28 34 L 29.5 34 L 29.5 30 Z" fill="#4682B4"/>
+  
+  <!-- Segundo personagem (mulher) -->
+  <circle cx="52" cy="24" r="6" fill="#D4A574" stroke="#8B6F47" stroke-width="1.5"/>
+  <path d="M 48 20 Q 52 16 56 20 Q 56 24 52 24 Q 48 24 48 20 Z" fill="#DAA520"/>
+  <rect x="48" y="32" width="8" height="12" fill="#FF69B4" rx="1"/>
+  <rect x="49.5" y="36" width="5" height="6" fill="#FF1493"/>
+  <path d="M 52 30 L 52 34 L 53.5 34 L 53.5 30 Z" fill="#FFD700"/>
+  
+  <!-- Braços -->
+  <rect x="20" y="34" width="4" height="2" fill="#D4A574" rx="1"/>
+  <rect x="56" y="34" width="4" height="2" fill="#D4A574" rx="1"/>
+</svg>
