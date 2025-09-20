@@ -271,7 +271,7 @@ const ListingPage = () => {
                   type="text"
                   name="location"
                   placeholder="City or country (e.g., Lisbon)"
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full border border-gray-400 rounded-md px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={searchParams.location}
                   onChange={handleSearchChange}
                 />
@@ -301,13 +301,13 @@ const ListingPage = () => {
           {/* Sidebar filters */}
           <div className="lg:w-96 flex-shrink-0">
             <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm border border-gray-200">
-              <h2 className="font-bold text-lg mb-4">Filters</h2>
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">Filters</h2>
               
               {/* Country filters */}
               <div className="mb-6">
-                <h3 className="font-medium mb-2">Country</h3>
+                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Country</h3>
                 {["Portugal", "Spain", "Germany", "Netherlands", "Ireland", "France"].map((country) => (
-                  <label key={country} className="flex items-center mb-2">
+                  <label key={country} className="flex items-center mb-2 text-slate-900 text-sm font-medium">
                     <input
                       type="checkbox"
                       checked={filters.country.includes(country)}
@@ -321,11 +321,11 @@ const ListingPage = () => {
               
               {/* City filter */}
               <div className="mb-6">
-                <h3 className="font-medium mb-2">City</h3>
+                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">City</h3>
                 <input
                   type="text"
                   placeholder="Type a city..."
-                  className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full border border-gray-400 rounded-md px-3 py-1.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 />
               </div>
               
@@ -359,9 +359,9 @@ const ListingPage = () => {
               
               {/* Home type */}
               <div className="mb-6">
-                <h3 className="font-medium mb-2">Home type</h3>
+                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Home type</h3>
                 {["Entire apartment", "Entire house"].map((type) => (
-                  <label key={type} className="flex items-center mb-2">
+                  <label key={type} className="flex items-center mb-2 text-slate-900 text-sm font-medium">
                     <input
                       type="checkbox"
                       checked={filters.homeType.includes(type)}
@@ -375,9 +375,9 @@ const ListingPage = () => {
               
               {/* Amenities */}
               <div className="mb-6">
-                <h3 className="font-medium mb-2">Amenities</h3>
+                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Amenities</h3>
                 {["Desk", "Balcony", "Lift", "Washing machine"].map((amenity) => (
-                  <label key={amenity} className="flex items-center mb-2">
+                  <label key={amenity} className="flex items-center mb-2 text-slate-900 text-sm font-medium">
                     <input
                       type="checkbox"
                       checked={filters.amenities.includes(amenity)}
@@ -391,10 +391,10 @@ const ListingPage = () => {
               
               {/* Wi-Fi speed */}
               <div className="mb-6">
-                <h3 className="font-medium mb-2">Wi-Fi speed (min)</h3>
+                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Wi-Fi speed (min)</h3>
                 <select
                   name="wifiSpeed"
-                  className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full border border-gray-400 rounded-md px-3 py-1.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                   value={filters.wifiSpeed}
                   onChange={(e) => handleFilterChange(e as any)}
                 >
@@ -463,10 +463,10 @@ const ListingPage = () => {
                       
                       {/* Home type and host type tags */}
                       <div className="flex gap-2 mb-2">
-                        <span className="inline-block text-xs bg-blue-200 text-blue-900 px-2 py-1 rounded">
+                        <span className="inline-block text-xs bg-blue-300 text-blue-900 px-2 py-1 rounded">
                           {house.type}
                         </span>
-                        <span className="inline-block text-xs bg-blue-200 text-blue-900 px-2 py-1 rounded">
+                        <span className="inline-block text-xs bg-blue-300 text-blue-900 px-2 py-1 rounded">
                           {house.host}
                         </span>
                       </div>
@@ -517,7 +517,7 @@ const ListingPage = () => {
                             EU citizens only
                           </span>
                           {house.isVerified && (
-                            <span className="inline-block bg-blue-200 text-blue-900 px-2 py-0.5 rounded ml-2">
+                            <span className="inline-block bg-blue-300 text-blue-900 px-2 py-0.5 rounded ml-2">
                               ✓ verified
                             </span>
                           )}
