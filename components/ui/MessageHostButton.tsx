@@ -127,7 +127,7 @@ export default function MessageHostButton() {
                 <h2 className="text-xl font-semibold">Message Host</h2>
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-slate-900 hover:text-slate-900"
                 >
                   ✕
                 </button>
@@ -140,13 +140,13 @@ export default function MessageHostButton() {
                   </div>
                   <div>
                     <h3 className="font-medium">{mockListing.hostName}</h3>
-                    <p className="text-sm text-gray-500">Host</p>
+                    <p className="text-sm text-slate-900">Host</p>
                   </div>
                 </div>
                 
-                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                <div className="mt-4 p-3 bg-slate-100 rounded-lg">
                   <p className="font-medium">{mockListing.title}</p>
-                  <p className="text-sm text-gray-600">{mockListing.location}</p>
+                  <p className="text-sm text-slate-900">{mockListing.location}</p>
                   <p className="text-sm font-medium mt-2">{`€${mockListing.price} per night`}</p>
                 </div>
               </div>
@@ -159,7 +159,7 @@ export default function MessageHostButton() {
 
               <form onSubmit={handleSendMessage}>
                 <div className="mb-4">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-900 mb-1">
                     Your message to {mockListing.hostName}
                   </label>
                   <textarea
@@ -175,7 +175,7 @@ export default function MessageHostButton() {
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="text-gray-600 hover:text-gray-800"
+                    className="text-slate-900 hover:text-gray-800"
                   >
                     Cancel
                   </button>

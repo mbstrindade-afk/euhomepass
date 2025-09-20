@@ -91,9 +91,9 @@ const DateSelector: React.FC<DateSelectorProps> = ({
   return (
     <div className="date-selector">
       <div className="mb-4">
-        <h3 className="font-medium mb-2">Date Selection Mode</h3>
+        <h3 className="text-slate-900 font-semibold mb-2">Date Selection Mode</h3>
         <div className="flex space-x-4">
-          <label className="flex items-center cursor-pointer">
+          <label className="flex items-center cursor-pointer text-slate-900">
             <input
               type="radio"
               className="mr-2"
@@ -102,7 +102,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
             />
             <span>{locale === 'pt' ? 'Por Meses' : 'By Months'}</span>
           </label>
-          <label className="flex items-center cursor-pointer">
+          <label className="flex items-center cursor-pointer text-slate-900">
             <input
               type="radio"
               className="mr-2"
@@ -117,9 +117,9 @@ const DateSelector: React.FC<DateSelectorProps> = ({
       {dateSelectionMode === 'complete' ? (
         <div className="complete-dates">
           {isCollapsed ? (
-            <div className="collapsed-view border border-gray-200 rounded-md p-3 bg-white">
+            <div className="collapsed-view border border-gray-400 rounded-md p-3 bg-white">
               <div className="flex justify-between items-center">
-                <div className="text-sm text-gray-700">
+                <div className="text-sm text-slate-900">
                   {locale === 'pt' ? 'Período selecionado:' : 'Selected period:'} {format(selectedDateRange.startDate, 'PP', { locale: dateLocale })} - {format(selectedDateRange.endDate, 'PP', { locale: dateLocale })}
                 </div>
                 <div>
@@ -135,22 +135,22 @@ const DateSelector: React.FC<DateSelectorProps> = ({
           ) : (
             <>
           <div className="mb-2">
-            <h3 className="font-medium mb-2">{locale === 'pt' ? 'Selecione as datas' : 'Select Dates'}</h3>
+            <h3 className="text-slate-900 font-semibold mb-2">{locale === 'pt' ? 'Selecione as datas' : 'Select Dates'}</h3>
           </div>
           
           {showYearView ? (
-            <div className="border border-gray-300 rounded-md p-4 bg-white">
-              <div className="flex justify-between items-center mb-4">
+            <div className="border border-gray-500 rounded-md p-4 bg-white">
+              <div className="flex justify-between items-center mb-4 text-slate-900">
                 <button 
                   onClick={() => setCurrentYear(prev => prev - 1)}
-                  className="p-2 hover:bg-gray-100 rounded-full"
+                  className="p-2 hover:bg-gray-200 rounded-full text-slate-900"
                 >
                   ◀
                 </button>
-                <h3 className="text-xl font-bold">{currentYear}</h3>
+                <h3 className="text-xl font-bold text-slate-900">{currentYear}</h3>
                 <button 
                   onClick={() => setCurrentYear(prev => prev + 1)}
-                  className="p-2 hover:bg-gray-100 rounded-full"
+                  className="p-2 hover:bg-gray-200 rounded-full text-slate-900"
                 >
                   ▶
                 </button>
@@ -188,7 +188,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
               </div>
             </div>
           ) : (
-            <div className="border border-gray-300 rounded-md overflow-hidden">
+            <div className="border border-gray-500 rounded-md overflow-hidden">
               <DateRange
                 editableDateInputs={true}
                 onChange={handleRangeChange}
@@ -259,11 +259,11 @@ const DateSelector: React.FC<DateSelectorProps> = ({
         </div>
       ) : (
         <div className="month-selection">
-          <h3 className="font-medium mb-2">{locale === 'pt' ? 'Meses disponíveis' : 'Available Months'}</h3>
+          <h3 className="text-slate-900 font-semibold mb-2">{locale === 'pt' ? 'Meses disponíveis' : 'Available Months'}</h3>
           <div className="grid grid-cols-4 gap-2">
             {monthAbbreviations.map((month) => (
-              <label key={month} className="flex items-center border border-gray-300 rounded p-2 cursor-pointer hover:bg-gray-50 justify-between w-full">
-                <span>{month}</span>
+              <label key={month} className="flex items-center border border-gray-500 rounded p-2 cursor-pointer hover:bg-gray-50 justify-between w-full">
+                <span className="text-slate-900 font-medium">{month}</span>
                 <input
                   type="checkbox"
                   checked={selectedMonths.includes(month)}

@@ -80,8 +80,8 @@ export default function PropertyDetailsPage() {
             {/* Property Header */}
             <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">{property.title}</h1>
-                <p className="text-lg text-gray-600 mt-1">{property.location}</p>
+                <h1 className="text-3xl font-bold text-slate-900">{property.title}</h1>
+                <p className="text-lg text-slate-900 mt-1">{property.location}</p>
               </div>
               <div className="mt-4 md:mt-0 flex items-center">
                 <div className="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-semibold flex items-center">
@@ -98,43 +98,43 @@ export default function PropertyDetailsPage() {
               {/* Left Column */}
               <div className="flex-1">
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">About this property</h2>
-                  <p className="text-gray-600">{property.description}</p>
+                  <h2 className="text-xl font-semibold text-slate-900 mb-4">About this property</h2>
+                  <p className="text-slate-900">{property.description}</p>
                 </div>
                 
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Property features</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <h2 className="text-xl font-semibold text-slate-900 mb-4">Property features</h2>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-slate-900">
                     <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-900 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                       </svg>
-                      <span>{property.bedrooms} bedrooms</span>
+                      <span className="text-slate-900 font-medium">{property.bedrooms} bedrooms</span>
                     </div>
                     <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-900 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      <span>{property.bathrooms} bathrooms</span>
+                      <span className="text-slate-900 font-medium">{property.bathrooms} bathrooms</span>
                     </div>
                     <div className="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-900 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
-                      <span>Max {property.maxGuests} guests</span>
+                      <span className="text-slate-900 font-medium">Max {property.maxGuests} guests</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Amenities</h2>
+                  <h2 className="text-xl font-semibold text-slate-900 mb-4">Amenities</h2>
                   <div className="grid grid-cols-2 gap-3">
                     {property.amenities.map((amenity) => (
-                      <div key={amenity} className="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div key={amenity} className="flex items-center text-slate-900 font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span>{amenity}</span>
+                        <span className="text-slate-900 font-medium">{amenity}</span>
                       </div>
                     ))}
                   </div>
@@ -145,16 +145,16 @@ export default function PropertyDetailsPage() {
             </div>
             
             {/* Host Info */}
-            <div className="mt-8 border-t border-gray-200 pt-8">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">About the host</h2>
+            <div className="mt-8 border-t border-gray-300 pt-8">
+              <h2 className="text-xl font-semibold text-slate-900 mb-4">About the host</h2>
               <div className="flex items-start justify-between">
                 <div className="flex items-start">
-                  <div className="bg-gray-200 w-14 h-14 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-xl font-bold text-gray-600">{property.host.name.charAt(0)}</span>
+                  <div className="bg-gray-300 w-14 h-14 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-xl font-bold text-slate-900">{property.host.name.charAt(0)}</span>
                   </div>
                   <div>
                     <h3 className="font-medium">Hosted by {property.host.name}</h3>
-                    <p className="text-gray-600 text-sm">Member since {property.host.memberSince} · {property.host.rating} rating</p>
+                    <p className="text-slate-900 text-sm">Member since {property.host.memberSince} · {property.host.rating} rating</p>
                   </div>
                 </div>
                 <button 

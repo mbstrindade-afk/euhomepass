@@ -261,7 +261,7 @@ const ListingPage = () => {
     <div className="bg-[#f8f9fa] min-h-screen">
       <Header />
       {/* Search section */}
-      <div className="bg-white shadow-sm border-b border-gray-200 py-4">
+      <div className="bg-white shadow-sm border-b border-gray-300 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between gap-4">
             <div className="flex flex-1 items-center gap-3">
@@ -286,7 +286,7 @@ const ListingPage = () => {
 
             {/* Action button: List my House */}
             <div className="flex items-center">
-              <Link href="/listing/create" className="ml-0 md:ml-4 inline-block bg-white border border-blue-500 text-blue-600 hover:bg-blue-50 font-medium py-2 px-4 rounded-md">
+              <Link href="/listing/create" className="ml-0 md:ml-4 inline-block bg-white border border-blue-500 text-blue-700 hover:bg-blue-100 font-medium py-2 px-4 rounded-md">
                 List my House
               </Link>
             </div>
@@ -300,12 +300,12 @@ const ListingPage = () => {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar filters */}
           <div className="lg:w-96 flex-shrink-0">
-            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm border border-gray-200">
+            <div className="bg-white p-6 lg:p-8 rounded-lg shadow-sm border border-gray-300">
               <h2 className="text-lg font-semibold text-slate-900 mb-4">Filters</h2>
               
               {/* Country filters */}
               <div className="mb-6">
-                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Country</h3>
+                <h3 className="text-slate-900 font-semibold uppercase uppercase tracking-wide mb-2 text-sm">Country</h3>
                 {["Portugal", "Spain", "Germany", "Netherlands", "Ireland", "France"].map((country) => (
                   <label key={country} className="flex items-center mb-2 text-slate-900 text-sm font-medium">
                     <input
@@ -321,7 +321,7 @@ const ListingPage = () => {
               
               {/* City filter */}
               <div className="mb-6">
-                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">City</h3>
+                <h3 className="text-slate-900 font-semibold uppercase uppercase tracking-wide mb-2 text-sm">City</h3>
                 <input
                   type="text"
                   placeholder="Type a city..."
@@ -359,7 +359,7 @@ const ListingPage = () => {
               
               {/* Home type */}
               <div className="mb-6">
-                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Home type</h3>
+                <h3 className="text-slate-900 font-semibold uppercase uppercase tracking-wide mb-2 text-sm">Home type</h3>
                 {["Entire apartment", "Entire house"].map((type) => (
                   <label key={type} className="flex items-center mb-2 text-slate-900 text-sm font-medium">
                     <input
@@ -375,7 +375,7 @@ const ListingPage = () => {
               
               {/* Amenities */}
               <div className="mb-6">
-                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Amenities</h3>
+                <h3 className="text-slate-900 font-semibold uppercase uppercase tracking-wide mb-2 text-sm">Amenities</h3>
                 {["Desk", "Balcony", "Lift", "Washing machine"].map((amenity) => (
                   <label key={amenity} className="flex items-center mb-2 text-slate-900 text-sm font-medium">
                     <input
@@ -391,7 +391,7 @@ const ListingPage = () => {
               
               {/* Wi-Fi speed */}
               <div className="mb-6">
-                <h3 className="text-slate-900 font-semibold uppercase tracking-wide mb-2 text-sm">Wi-Fi speed (min)</h3>
+                <h3 className="text-slate-900 font-semibold uppercase uppercase tracking-wide mb-2 text-sm">Wi-Fi speed (min)</h3>
                 <select
                   name="wifiSpeed"
                   className="w-full border border-gray-400 rounded-md px-3 py-1.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
@@ -421,7 +421,7 @@ const ListingPage = () => {
               <div className="flex items-center gap-4">
                 <span className="font-medium text-lg">128 homes</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-900">Sort by:</span>
+                  <span className="text-sm text-slate-900 font-medium">Sort by:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
@@ -444,7 +444,7 @@ const ListingPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {displayedHouses.length > 0 ? (
                 displayedHouses.map(house => (
-                  <div key={house.id} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                  <div key={house.id} className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-300">
                     {/* House image */}
                     <div className="relative h-48 w-full">
                       <Image
@@ -458,8 +458,8 @@ const ListingPage = () => {
                     {/* House details */}
                     <div className="p-4">
                       {/* Title and location */}
-                      <h2 className="text-lg font-semibold text-gray-900">{house.title}</h2>
-                      <p className="text-sm text-gray-900 mb-3">{house.location}</p>
+                      <h2 className="text-lg font-semibold text-slate-900">{house.title}</h2>
+                      <p className="text-sm text-slate-900 mb-3">{house.location}</p>
                       
                       {/* Home type and host type tags */}
                       <div className="flex gap-2 mb-2">
@@ -473,20 +473,20 @@ const ListingPage = () => {
                       
                       {/* Annual pricing if available */}
                       {house.price.annual.first > 0 && (
-                        <div className="text-sm mb-2">
+                        <div className="text-sm text-slate-900 mb-2">
                           <span>Annual: first rate €{house.price.annual.first} to €{house.price.annual.subsequent}</span>
                         </div>
                       )}
                       
                       {/* No booking fees tag if applicable */}
                       {house.noBookingFees && (
-                        <div className="text-sm mb-2">
-                          <span className="text-green-600">No booking fees. Insurance up to €3,000/day</span>
+                        <div className="text-sm text-slate-900 mb-2">
+                          <span className="text-emerald-600">No booking fees. Insurance up to €3,000/day</span>
                         </div>
                       )}
                       
                       {/* House specs */}
-                      <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                      <div className="flex items-center gap-2 text-slate-900 font-semibold mb-3 text-sm tracking-tight">
                         <div className="flex items-center">
                           {house.bedrooms} BR
                         </div>
@@ -536,7 +536,7 @@ const ListingPage = () => {
                 ))
               ) : (
                 <div className="col-span-3 py-12 text-center">
-                  <p className="text-gray-900">No houses match your filters. Try adjusting your search criteria.</p>
+                  <p className="text-slate-900">No houses match your filters. Try adjusting your search criteria.</p>
                 </div>
               )}
             </div>
@@ -547,7 +547,7 @@ const ListingPage = () => {
                 <button 
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))} 
                   disabled={currentPage === 1}
-                  className={`px-4 py-2 text-sm rounded-md ${currentPage === 1 ? 'text-gray-400' : 'text-blue-600 hover:bg-blue-50'}`}
+                  className={`px-4 py-2 text-sm rounded-md ${currentPage === 1 ? 'text-gray-400' : 'text-blue-700 hover:bg-blue-100'}`}
                 >
                   Previous
                 </button>
@@ -559,7 +559,7 @@ const ListingPage = () => {
                 <button 
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} 
                   disabled={currentPage === totalPages}
-                  className={`px-4 py-2 text-sm rounded-md ${currentPage === totalPages ? 'text-gray-400' : 'text-blue-600 hover:bg-blue-50'}`}
+                  className={`px-4 py-2 text-sm rounded-md ${currentPage === totalPages ? 'text-gray-400' : 'text-blue-700 hover:bg-blue-100'}`}
                 >
                   Next
                 </button>
