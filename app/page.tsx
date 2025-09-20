@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useAuth } from '../contexts/AuthContext';
 import items from "../components/ItemsData";
 
 // Import Google Fonts via CDN
@@ -14,6 +15,7 @@ if (typeof window !== 'undefined') {
 }
 
 export default function Home() {
+  const { isAuthenticated } = useAuth();
   const [selectedFaq, setSelectedFaq] = useState<string | null>(null);
 
   useEffect(() => {
@@ -225,7 +227,10 @@ export default function Home() {
               <span className="block text-emerald-600">Share everywhere</span>
             </h1>
             <p className="text-slate-700 mb-6">Swap homes with EU residents — no rent, just sharing</p>
-            <a href="#" className="inline-block px-5 py-3 rounded-lg bg-emerald-600 text-white font-semibold shadow hover:bg-emerald-700">Create account</a>
+            <Link href={isAuthenticated ? '/dashboard' : '/register'}
+              className="inline-block px-5 py-3 rounded-lg bg-emerald-600 text-white font-semibold shadow hover:bg-emerald-700">
+              {isAuthenticated ? 'Go to dashboard' : 'Create account'}
+            </Link>
           </div>
           <div className="flex-1 flex justify-center items-center mt-8 md:mt-0">
             <img src="/ChatGPT Image Sep 9, 2025, 01_36_41 AM.png" alt="Map of Europe with HomePass houses" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
@@ -463,7 +468,11 @@ export default function Home() {
             </label>
             <div className="mt-5 flex items-center justify-end gap-3">
               <button id="close" className="px-4 py-2 rounded-lg border">Close</button>
-              <button id="create" disabled className="px-4 py-2 rounded-lg bg-orange-600 text-white font-semibold disabled:bg-orange-200 disabled:text-orange-500">Create account</button>
+              {isAuthenticated ? (
+                <Link href="/dashboard" className="px-4 py-2 rounded-lg bg-emerald-600 text-white font-semibold hover:bg-emerald-700">Go to dashboard</Link>
+              ) : (
+                <button id="create" disabled className="px-4 py-2 rounded-lg bg-orange-600 text-white font-semibold disabled:bg-orange-200 disabled:text-orange-500">Create account</button>
+              )}
             </div>
           </div>
         </div>
