@@ -46,7 +46,7 @@ export default function MyInformationPage() {
   ];
   
   // Simulação de dados de reciprocidade
-  const [reciprocityData, setReciprocityData] = useState({
+  const [reciprocityData] = useState({
     // Meses que disponibilizou a casa
     providedMonths: ['January', 'February', 'July', 'August'],
     // Meses que usou casas de outros

@@ -25,7 +25,7 @@ const issueCategoryLabels: Record<IssueCategory, string> = {
 };
 
 export default function ReportIssue() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);

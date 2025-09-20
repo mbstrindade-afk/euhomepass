@@ -8,12 +8,10 @@ if (supabaseUrl && supabaseAnonKey) {
 	try {
 		supabase = createClient(supabaseUrl, supabaseAnonKey);
 	} catch (e) {
-		// eslint-disable-next-line no-console
 		console.warn('[supabaseClient] Failed to create client:', e);
 		supabase = null;
 	}
 } else {
-	// eslint-disable-next-line no-console
 	console.warn('[supabaseClient] Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY. Uploads disabled.');
 }
 

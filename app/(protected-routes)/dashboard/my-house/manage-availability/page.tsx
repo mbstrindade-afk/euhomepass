@@ -14,14 +14,14 @@ interface ReservedPeriod {
 }
 
 export default function ManageAvailabilityPage() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const propertyId = searchParams.get('propertyId');
   const { t, i18n } = useTranslation(['common']);
   
   // Sample properties data (in a real app, this would come from a database)
-  const [properties, setProperties] = useState<Property[]>([
+  const [properties] = useState<Property[]>([
     {
       id: '1',
       title: 'Modern Apartment in Porto',

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { DateRange } from 'react-date-range';
-import { addDays, addMonths, format, isSameMonth } from 'date-fns';
+import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 // Import CSS for react-date-range
@@ -23,11 +23,6 @@ interface DateSelectorProps {
   locale?: 'en' | 'pt';
   onDone?: () => void;
 }
-
-const monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
 
 const monthAbbreviations = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',

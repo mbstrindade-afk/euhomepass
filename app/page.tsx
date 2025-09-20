@@ -34,16 +34,6 @@ export default function Home() {
     if (year) year.textContent = new Date().getFullYear().toString();
   }, []);
   
-  // Navigation links
-  const authNavLinks = [
-    { href: "/register-test", label: "Register Test Page" },
-    { href: "/debug", label: "Debug Page" },
-    { href: "/login", label: "Login Page" },
-    { href: "/register", label: "Register Page" },
-    { href: "/dashboard", label: "Dashboard (Protected)" },
-    { href: "/messages", label: "Messages" }
-  ];
-
   const faqData = [
     {
       id: "passes",

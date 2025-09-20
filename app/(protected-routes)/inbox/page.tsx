@@ -10,10 +10,9 @@ import Header from '../../../components/Header';
 
 export default function InboxPage() {
   const router = useRouter();
-  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const { 
     conversations, 
-    currentConversation, 
     selectConversation, 
     refreshConversations,
     isLoading: chatLoading,

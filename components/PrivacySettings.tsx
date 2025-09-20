@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Toggle from './ui/Toggle';
 
 interface PrivacySettingsProps {
   onSave?: (settings: PrivacySettingsType) => void;

@@ -7,10 +7,9 @@ import AvailabilityManager from '../../../../components/AvailabilityManager';
 import Link from 'next/link';
 import PropertyList, { Property } from '../../../../components/PropertyList';
 import PropertyDetails from '../../../../components/PropertyDetails';
-import CommunityActivity from '../../../../components/CommunityActivity';
 
 export default function MyHousePage() {
-  const { user, isAuthenticated, isLoading: authLoading, logout } = useAuth();
+  const { isAuthenticated, isLoading: authLoading, logout } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedPropertyId = searchParams.get('propertyId');
@@ -18,7 +17,7 @@ export default function MyHousePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [viewType, setViewType] = useState<'grid' | 'list'>('grid');
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
-  const [properties, setProperties] = useState<Property[]>([
+  const [properties] = useState<Property[]>([
     {
       id: '1',
       title: 'Modern Apartment in Porto',
@@ -57,19 +56,6 @@ export default function MyHousePage() {
   ]);
 
   // Default house data (will be replaced by selected property)
-  const [houseData, setHouseData] = useState({
-    address: '123 Maple Street, Porto, Portugal',
-    type: 'Apartment',
-    bedrooms: 2,
-    bathrooms: 1,
-    size: '85 m²',
-    status: 'Available',
-    images: ['/home.svg'],
-    description: 'Modern apartment in the heart of Porto with beautiful views of the city. Close to public transportation and local amenities.',
-    amenities: ['Wi-Fi', 'Kitchen', 'Heating', 'Air conditioning', 'Washer'],
-    lastUpdated: 'August 25, 2025'
-  });
-
   const availability = [
     { startDate: '2025-09-01', endDate: '2025-09-15' },
     { startDate: '2025-10-01', endDate: '2025-10-15' },
@@ -81,33 +67,9 @@ export default function MyHousePage() {
       const property = properties.find(p => p.id === selectedPropertyId);
       if (property) {
         setSelectedProperty(property);
-        setHouseData({
-          address: property.address,
-          type: property.type,
-          bedrooms: property.bedrooms,
-          bathrooms: property.bathrooms,
-          size: property.size,
-          status: property.status,
-          images: property.images,
-          description: property.description,
-          amenities: property.amenities,
-          lastUpdated: property.lastUpdated
-        });
       }
     } else if (properties.length > 0) {
       setSelectedProperty(properties[0]);
-      setHouseData({
-        address: properties[0].address,
-        type: properties[0].type,
-        bedrooms: properties[0].bedrooms,
-        bathrooms: properties[0].bathrooms,
-        size: properties[0].size,
-        status: properties[0].status,
-        images: properties[0].images,
-        description: properties[0].description,
-        amenities: properties[0].amenities,
-        lastUpdated: properties[0].lastUpdated
-      });
     }
     
     // Simulate loading of data

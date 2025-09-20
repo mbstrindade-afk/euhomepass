@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import { format } from 'date-fns';
 import { FiSend, FiPaperclip, FiSmile, FiUser, FiChevronLeft, FiSearch } from 'react-icons/fi';
 
@@ -322,7 +321,7 @@ export default function MessengerPage() {
                 className="flex-1 overflow-y-auto p-4 bg-gray-50"
               >
                 <div className="max-w-3xl mx-auto space-y-4">
-                  {messages[selectedConversation]?.map((msg, index) => {
+                  {messages[selectedConversation]?.map((msg) => {
                     const isUser = msg.senderId === 'user-1';
                     return (
                       <div 

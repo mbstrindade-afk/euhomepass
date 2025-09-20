@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useAuth } from '../../../contexts/AuthContext';
 import DateSelector from '../../../components/DateSelector';
 import Header from '../../../components/Header';
 import MessageHostButton from '../../../components/ui/MessageHostButton';
@@ -127,7 +126,6 @@ const availableHouses = [
 ];
 
 const ListingPage = () => {
-  const { isAuthenticated } = useAuth();
   const [searchParams, setSearchParams] = useState({
     location: "",
     month: "Any month",

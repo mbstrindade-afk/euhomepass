@@ -6,7 +6,7 @@ import { useChat } from '../contexts/ChatContext';
 import { FiHelpCircle, FiMessageCircle } from 'react-icons/fi';
 
 export default function Header() {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const { unreadCount } = useChat();
   
   return (

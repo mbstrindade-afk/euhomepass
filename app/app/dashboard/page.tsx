@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 
 interface DashboardData {
   stats: {
@@ -32,11 +31,11 @@ interface DashboardData {
 }
 
 export default function Dashboard() {
-  const { user, isAuthenticated, isLoading, logout } = useAuth();
+  const { isAuthenticated, isLoading, logout } = useAuth();
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string>('Charlotte');
+  const [userName] = useState<string>('Charlotte');
   const router = useRouter();
 
   useEffect(() => {

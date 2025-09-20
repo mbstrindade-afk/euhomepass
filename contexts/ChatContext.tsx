@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 
 // Types
@@ -42,7 +42,12 @@ interface ChatContextType {
   isLoading: boolean;
   error: string | null;
   sendMessage: (conversationId: string, content: string) => Promise<void>;
-  startNewConversation: (receiverId: string, listingId?: string, initialMessage?: string) => Promise<string | null>;
+  startNewConversation: (
+    receiverId: string,
+    listingId?: string,
+    initialMessage?: string,
+    receiverMeta?: { name?: string; email?: string }
+  ) => Promise<string | null>;
   selectConversation: (conversationId: string) => void;
   markAsRead: (conversationId: string) => Promise<void>;
   refreshConversations: () => Promise<void>;
@@ -53,18 +58,12 @@ const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
 export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user, isAuthenticated } = useAuth();
+  const userId = user ? (typeof user.id === 'string' || typeof user.id === 'number' ? String(user.id) : undefined) : undefined;
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [currentConversation, setCurrentConversation] = useState<Conversation | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [unreadCount, setUnreadCount] = useState(0);
-
-  // Fetch user's conversations when authenticated
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      refreshConversations();
-    }
-  }, [isAuthenticated, user]);
 
   // Calculate unread count whenever conversations change
   useEffect(() => {
@@ -75,41 +74,49 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, [conversations]);
 
   // Fetch all conversations for the current user
-  const refreshConversations = async (): Promise<void> => {
-    if (!isAuthenticated || !user) return;
-    
+  const refreshConversations = useCallback(async (): Promise<void> => {
+    if (!isAuthenticated || !userId) return;
+
     setIsLoading(true);
     setError(null);
-    
+
     try {
       const response = await fetch('/api/chat/conversations');
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch conversations');
       }
-      
+
       const data = await response.json();
       setConversations(data.conversations);
-      
-      // If there's a current conversation, refresh it with updated data
-      if (currentConversation) {
-        const updated = data.conversations.find(
-          (c: Conversation) => c.id === currentConversation.id
-        );
-        if (updated) {
-          setCurrentConversation(updated);
+
+      setCurrentConversation((prev) => {
+        if (!prev) {
+          return prev;
         }
-      }
+
+        const updated = data.conversations.find(
+          (c: Conversation) => c.id === prev.id
+        );
+        return updated ?? prev;
+      });
     } catch (err: any) {
       setError(err.message);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isAuthenticated, userId]);
+
+  // Fetch user's conversations when authenticated
+  useEffect(() => {
+    if (isAuthenticated && userId) {
+      refreshConversations();
+    }
+  }, [isAuthenticated, userId, refreshConversations]);
 
   // Send a message in an existing conversation
   const sendMessage = async (conversationId: string, content: string): Promise<void> => {
-    if (!isAuthenticated || !user) {
+    if (!isAuthenticated || !userId) {
       setError('You must be logged in to send messages');
       return;
     }
@@ -145,9 +152,10 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const startNewConversation = async (
     receiverId: string,
     listingId?: string,
-    initialMessage?: string
+    initialMessage?: string,
+    receiverMeta?: { name?: string; email?: string }
   ): Promise<string | null> => {
-    if (!isAuthenticated || !user) {
+    if (!isAuthenticated || !userId) {
       setError('You must be logged in to start a conversation');
       return null;
     }
@@ -165,6 +173,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           receiverId,
           listingId,
           initialMessage,
+          receiver: receiverMeta,
         }),
       });
       
@@ -179,7 +188,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       await refreshConversations();
       
       // Return the ID of the new conversation
-      return data.conversationId;
+      return (data.conversationId as string) ?? null;
       
     } catch (err: any) {
       setError(err.message);
@@ -204,7 +213,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Mark a conversation as read
   const markAsRead = async (conversationId: string): Promise<void> => {
-    if (!isAuthenticated || !user) return;
+    if (!isAuthenticated || !userId) return;
     
     try {
       const response = await fetch(`/api/chat/conversations/${conversationId}/read`, {

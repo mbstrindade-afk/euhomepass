@@ -44,10 +44,9 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
 
 interface MessageGroupProps {
   messages: Message[];
-  userId: string;
 }
 
-export const MessageGroup: React.FC<MessageGroupProps> = ({ messages, userId }) => {
+export const MessageGroup: React.FC<MessageGroupProps> = ({ messages }) => {
   const groupedMessages = messages.reduce<{ [key: string]: Message[] }>((groups, message) => {
     const senderId = message.senderId;
     if (!groups[senderId]) {

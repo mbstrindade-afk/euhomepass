@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addDays, eachDayOfInterval, format, isWithinInterval, parseISO, getDay } from 'date-fns';
+import { eachDayOfInterval, format, parseISO, getDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 interface Period {

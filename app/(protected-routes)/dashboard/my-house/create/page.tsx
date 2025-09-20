@@ -150,7 +150,7 @@ export default function CreateListing() {
 
   // Manipulador para utilities
   const handleUtilitiesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked, value, type } = e.target;
+    const { name, checked, value } = e.target;
     
     if (name === 'utilities.feeIncluded') {
       setListingData(prev => ({

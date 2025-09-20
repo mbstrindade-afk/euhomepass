@@ -6,15 +6,6 @@ import { useState } from 'react';
 // import Select from '../../components/ui/Select';
 // import { toast } from '../../components/toast';
 
-const languages = [
-  { value: 'en', label: 'English' },
-  { value: 'pt', label: 'Portuguese' },
-];
-const timezones = [
-  { value: 'Europe/Lisbon', label: 'Europe/Lisbon' },
-  { value: 'America/Sao_Paulo', label: 'America/Sao_Paulo' },
-];
-
 export default function Privacy() {
   const [loading, setLoading] = useState(false);
   const form = useForm({
@@ -30,8 +21,9 @@ export default function Privacy() {
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (formData: any) => {
     setLoading(true);
+    console.log('Privacy form submitted', formData);
     // const res = await fetch('/api/account/privacy', {
     //   method: 'PUT',
     //   body: JSON.stringify(data),
@@ -64,8 +56,8 @@ export default function Privacy() {
   {/* <Toggle label="Messages from verified-only" {...form.register('messagesFromVerifiedOnly')} /> */}
   {/* <Toggle label="Share email with confirmed matches" {...form.register('shareEmailWithMatches')} /> */}
   {/* <Toggle label="Share phone with confirmed matches" {...form.register('sharePhoneWithMatches')} /> */}
-  {/* <Select label="Language" options={languages} {...form.register('language')} /> */}
-  {/* <Select label="Time zone" options={timezones} {...form.register('timezone')} /> */}
+  {/* <Select label="Language" options={[]} {...form.register('language')} /> */}
+  {/* <Select label="Time zone" options={[]} {...form.register('timezone')} /> */}
         <button type="submit" className="btn btn-primary" disabled={loading || !form.formState.isDirty} aria-busy={loading}>
           {loading ? 'Saving...' : 'Save'}
         </button>
