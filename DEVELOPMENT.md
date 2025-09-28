@@ -72,8 +72,9 @@ npm run start
 # Linting
 npm run lint
 ```
+# isto e do pedrinho 
+## 📝 Próximos Passos~
 
-## 📝 Próximos Passos
 
 1. **Migrar componentes restantes** para `/app/components`
 2. **Implementar error boundaries** para tratamento de erros
