@@ -12,6 +12,7 @@ const navigationItems = [
   { href: '/legal/cookies', label: 'Cookies / CMP', exact: false },
   { href: '/legal/imprint', label: 'Legal Notice / Imprint', exact: false },
   { href: '/legal/gdpr', label: 'Data Requests (GDPR)', exact: false },
+  { href: '/legal/community-fund', label: 'Community Fund', exact: false },
 ];
 
 export default function LegalLayout({
@@ -41,7 +42,7 @@ export default function LegalLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/loguinho.png" alt="HomePass logo" className="w-40 h-auto rounded" />
+              <img src="/logoyellowprint-removebg-preview.png" alt="HomePass logo" className="w-40 h-auto rounded" />
             </Link>
           </div>
         </div>

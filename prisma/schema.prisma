@@ -1,9 +1,29 @@
+model Complaint {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
+model Pass {
+  id        String   @id @default(cuid())
+  type      String
+  startDate DateTime
+  endDate   DateTime
+  pricePaid Float
+  renewed   Boolean  @default(false)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-1.1.x"]
+  binaryTargets = ["native", "debian-openssl-1.1.x", "windows"]
 }
 
 datasource db {
@@ -17,13 +37,20 @@ model User {
   password  String
   name      String?
   createdAt DateTime  @default(now())
-  
+  passType  String?   // trimestral, anual
+  referralCode String @unique
+  referredUsers User[] @relation("UserReferrals")
+  referredBy    User?   @relation("UserReferrals", fields: [referredById], references: [id])
+  referredById  String?
+  hasListedHome Boolean @default(false)
+  rewards    Reward[]
+  passes     Pass[]
+  complaints Complaint[]
   // Chat related fields
   sentMessages     Message[]      @relation("SentMessages")
   receivedMessages Message[]      @relation("ReceivedMessages")
   sentConversations Conversation[] @relation("ConversationSender")
   receivedConversations Conversation[] @relation("ConversationReceiver")
-  
   // Other relationships
   sessions Session[]
   privacySettings PrivacySettings?
@@ -134,4 +161,13 @@ model Message {
   conversation    Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
   sender          User         @relation("SentMessages", fields: [senderId], references: [id])
   receiver        User         @relation("ReceivedMessages", fields: [receiverId], references: [id])
+}
+
+model Reward {
+  id        String   @id @default(cuid())
+  type      String
+  applied   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

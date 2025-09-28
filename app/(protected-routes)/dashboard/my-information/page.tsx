@@ -106,7 +106,7 @@ export default function MyInformationPage() {
         <header className="flex justify-between items-center p-4 mb-10 bg-white rounded-lg shadow-md backdrop-blur-sm bg-white/90">
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/loguinho.png" alt="HomePass logo" className="w-40 h-auto rounded" />
+              <img src="/logoyellowprint-removebg-preview.png" alt="HomePass logo" className="w-40 h-auto rounded" />
             </Link>
           </div>
           <nav className="flex items-center gap-6">

@@ -1,14 +1,14 @@
 {
-  "name": "HomePass",
-  "short_name": "HomePass",
-  "description": "The first community of shared homes by EU citizens — no rent, no bills, with community insurance included.",
+  "name": "EU HomePass",
+  "short_name": "EU HomePass",
+  "description": "The first community of shared homes by EU/EEA citizens — no rent, with excess utility coverage included.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0ea5e9",
   "icons": [
     {
-      "src": "/LOGOTIPO.png",
+      "src": "/logoyellowprint-removebg-preview.png",
       "sizes": "48x48 32x32 16x16",
       "type": "image/png"
     }

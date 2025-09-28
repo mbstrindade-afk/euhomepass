@@ -1,13 +1,31 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '../contexts/AuthContext';
 import { useChat } from '../contexts/ChatContext';
+import { useSmoothScroll } from '../hooks/useSmoothScroll';
 import { FiHelpCircle, FiMessageCircle } from 'react-icons/fi';
 
 export default function Header() {
   const { isAuthenticated, logout } = useAuth();
   const { unreadCount } = useChat();
+  const { scrollToSection } = useSmoothScroll();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleSectionClick = (sectionId: string) => {
+    if (pathname === '/') {
+      // Se já estamos na página inicial, apenas faz scroll
+      scrollToSection(sectionId);
+    } else {
+      // Se estamos em outra página, navega para home e depois faz scroll
+      router.push('/');
+      setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 100);
+    }
+  };
   
   return (
     <>
@@ -17,17 +35,53 @@ export default function Header() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <Link href="/" className="flex items-center gap-2">
-                <img src="/loguinho.png" alt="HomePass logo" className="w-40 h-auto rounded" />
+                <img src="/homepass-logo.png" alt="EU HomePass logo" className="w-40 h-auto rounded" />
               </Link>
             </div>
             {/* Centered navigation (hidden on small screens) */}
             <nav role="navigation" aria-label="Main navigation" className="hidden md:flex items-center gap-8 text-sm flex-1 justify-center">
-              <Link href="/#how-it-works" className="hover:text-sky-700">How it works</Link>
-              <Link href="/#pricing" className="hover:text-sky-700">Prices</Link>
-              <Link href="/#insurance" className="hover:text-sky-700">Insurance</Link>
-              <Link href="/#community" className="hover:text-sky-700">Community</Link>
-              <Link href="/#rules" id="nav-rules" className="hover:text-sky-700">Rules</Link>
-              <Link href="/#faq" className="hover:text-sky-700">FAQ</Link>
+              <button 
+                onClick={() => handleSectionClick('how-it-works')} 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                How it works
+              </button>
+              <button 
+                onClick={() => handleSectionClick('pricing')} 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                Prices
+              </button>
+              <button 
+                onClick={() => handleSectionClick('utility-coverage')} 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                Fund
+              </button>
+              <button 
+                onClick={() => handleSectionClick('community')} 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                Community
+              </button>
+              <button 
+                onClick={() => handleSectionClick('rules')} 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                Rules
+              </button>
+              <button 
+                onClick={() => handleSectionClick('faq')} 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                FAQ
+              </button>
+              <Link 
+                href="/explore-homes" 
+                className="hover:text-sky-700 cursor-pointer bg-transparent border-none p-0 text-sm font-inherit transition-colors"
+              >
+                Explore homes
+              </Link>
             </nav>
             {/* Right actions */}
             <div className="flex items-center gap-3">
@@ -81,9 +135,6 @@ export default function Header() {
           </div>
         </div>
       </header>
-
-
-
     </>
   );
 }

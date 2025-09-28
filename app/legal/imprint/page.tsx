@@ -78,7 +78,7 @@ export default function ImprintPage() {
         <div>
           <h2 className="text-xl font-semibold text-slate-900 mb-4">Disclaimer</h2>
           <p className="text-slate-700 leading-relaxed">
-            HomePass is a community platform connecting EU citizens for home exchanges. We do not provide accommodation services directly and are not responsible for the condition, availability, or legal compliance of listed properties. Members are responsible for ensuring their activities comply with local laws and regulations.
+            EU HomePass is a community platform connecting EU/EEA citizens for home exchanges. We do not provide accommodation services directly and are not responsible for the condition, availability, or legal compliance of listed properties. Members are responsible for ensuring their activities comply with local laws and regulations.
           </p>
         </div>
 

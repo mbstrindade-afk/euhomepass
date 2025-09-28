@@ -68,7 +68,7 @@ export default function ExploreHomes() {
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl font-extrabold text-slate-800 mb-6">Explore Amazing Homes</h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-            Discover beautiful homes across the European Union listed by our verified members. 
+            Discover beautiful homes across the European Union and European Economic Area listed by our verified members. 
             Each property is verified and ready for your medium-term stay.
           </p>
         </div>
@@ -83,8 +83,8 @@ export default function ExploreHomes() {
             <div className="text-slate-600">Available Homes</div>
           </div>
           <div className="bg-white p-6 rounded-2xl shadow-sm border text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">27</div>
-            <div className="text-slate-600">EU Countries</div>
+            <div className="text-3xl font-bold text-green-600 mb-2">27+</div>
+            <div className="text-slate-600">EU + EEA Countries</div>
           </div>
           <div className="bg-white p-6 rounded-2xl shadow-sm border text-center">
             <div className="text-3xl font-bold text-purple-600 mb-2">1,200+</div>
@@ -169,15 +169,15 @@ export default function ExploreHomes() {
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-2xl">🛡️</span>
             </div>
-            <h3 className="font-bold text-xl mb-2">Verified and Insured</h3>
-            <p className="text-slate-600">All homes and members are verified. Insurance included up to €1,000 per stay.</p>
+            <h3 className="font-bold text-xl mb-2">Verified and Covered</h3>
+            <p className="text-slate-600">All homes and members are verified. Utility coverage included up to €200 per month for excess consumption.</p>
           </div>
           <div className="text-center">
             <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-2xl">💰</span>
             </div>
             <h3 className="font-bold text-xl mb-2">No Hidden Fees</h3>
-            <p className="text-slate-600">Only the pass fee. No rent, no booking fees, no surprises. Utilities included.</p>
+            <p className="text-slate-600">Only the pass fee. No rent, no booking fees, no surprises. Utility coverage available for excess consumption.</p>
           </div>
           <div className="text-center">
             <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">

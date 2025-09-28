@@ -23,6 +23,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // Check localStorage first for test user
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem('auth_token');
+          const storedUser = localStorage.getItem('user');
+          
+          if (token === 'test-token-123' && storedUser) {
+            const userData = JSON.parse(storedUser);
+            setUser(userData);
+            setIsLoading(false);
+            return;
+          }
+        }
+
         const response = await fetch('/api/auth/me');
         if (response.ok) {
           const userData = await response.json();
@@ -103,7 +116,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     setUser(null);
-    localStorage.removeItem('auth_token');
+    
+    // Clear localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user');
+    }
     
     // Clear the auth cookie as well
     try {

@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-              <img src="/loguinho.png" alt="HomePass logo" className="w-20 h-auto rounded" />
+              <img src="/logoyellowprint-removebg-preview.png" alt="EU HomePass logo" className="w-20 h-auto rounded" />
             </div>
             <p className="text-slate-600 text-sm max-w-md">
               EU community platform for temporary home exchanges. Live anywhere, share everywhere.

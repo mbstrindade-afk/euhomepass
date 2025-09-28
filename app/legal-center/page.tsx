@@ -5,6 +5,6 @@ export default function LegalCenterPage() {
 }
 
 export const metadata = {
-  title: 'Legal Center - HomePass',
+  title: 'Legal Center - EU HomePass',
   description: 'Terms & Conditions, Privacy Policy and Cookies/CMP with country-specific content.',
 };

@@ -98,9 +98,9 @@ const RulesSummary: React.FC<RulesSummaryProps> = ({ data }) => {
       </div>
 
       <div className="border-t border-gray-200 mt-3 pt-3">
-        <h3 className="font-semibold mb-2 text-base">Insurance & Fund</h3>
+        <h3 className="font-semibold mb-2 text-base">Utility Coverage</h3>
         <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-          Included: up to €1,000/stay; €25 deductible. Annual: first approved claim each year €0 (min €50). 
+          Excess utility coverage: up to €200/month. Coverage applies only when excess exceeds €30 above normal usage (proven with 6 months of previous bills). 
           Pet-related issues are excluded.
         </p>
       </div>
@@ -126,7 +126,7 @@ export default function HouseRulesPage() {
     visitors: 'Allowed with building rules',
     pets: 'Not allowed',
     petRules: '',
-    utilities: 'Standard Fair Use applies',
+    utilities: 'Excess utility coverage applies (up to €200/month)',
     cleaningExpectations: '',
     offLimits: '',
     buildingRules: '',
@@ -330,7 +330,7 @@ export default function HouseRulesPage() {
                 </div>
                 <div className="bg-blue-50 border border-dashed border-blue-200 rounded-xl p-3 mt-2">
                   <strong>Important:</strong> Pet-related issues (damage, cleaning, odors) are handled privately between Host & Guest.
-                  HomePass does not mediate, process payments, or cover these under insurance/Fund.
+                  HomePass does not mediate, process payments, or cover these under utility coverage.
                 </div>
               </section>
 
@@ -340,7 +340,7 @@ export default function HouseRulesPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="flex flex-col gap-2">
                     <label className="block text-sm font-medium text-gray-700">
-                      Utilities — Fair Use
+                      Utilities — Coverage
                     </label>
                     <select
                       name="utilities"
@@ -348,11 +348,11 @@ export default function HouseRulesPage() {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 font-inherit bg-white"
                     >
-                      <option value="Standard Fair Use applies">Standard Fair Use applies</option>
+                      <option value="Excess utility coverage applies (up to €200/month)">Excess utility coverage applies (up to €200/month)</option>
                       <option value="Custom note">Custom note</option>
                     </select>
                     <span className="text-xs text-gray-500">
-                      Abnormal usage can be claimed (per rules). No off-platform payments.
+                      Excess consumption over €30 can be claimed (with 6 months of bills).
                     </span>
                   </div>
                   <div className="flex flex-col gap-2">
@@ -452,7 +452,7 @@ export default function HouseRulesPage() {
                       className="mt-1 h-4 w-4 text-sky-600 focus:ring-sky-500 border-gray-300 rounded"
                     />
                     <span className="text-sm">
-                      I confirm I will remove/lock valuables. I understand valuables are not covered by insurance.
+                      I confirm I will remove/lock valuables. I understand valuables are not covered by utility coverage.
                     </span>
                   </label>
                   <label className="flex items-start gap-3 cursor-pointer">
@@ -474,7 +474,7 @@ export default function HouseRulesPage() {
                       className="mt-1 h-4 w-4 text-sky-600 focus:ring-sky-500 border-gray-300 rounded"
                     />
                     <span className="text-sm">
-                      I agree to the platform rules: Entire homes; Max 3 months/home; Fair Use utilities; No off-platform payments.
+                      I agree to the platform rules: Entire homes; Max 3 months/home; Utility coverage available; No off-platform payments.
                     </span>
                   </label>
                 </div>

@@ -217,13 +217,13 @@ export default function MessengerPage() {
   return (
     <div className="flex flex-col h-screen">
       <Head>
-        <title>Messages | HomePass</title>
+        <title>Messages | EU HomePass</title>
       </Head>
       
       {/* Header */}
       <header className="bg-white border-b border-gray-200 py-4 px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/loguinho.png" alt="HomePass" className="w-24 h-auto" />
+          <img src="/logoyellowprint-removebg-preview.png" alt="EU HomePass" className="w-24 h-auto" />
         </Link>
         <div className="flex items-center gap-4">
           <span className="text-sm text-gray-600">Welcome, Guest</span>

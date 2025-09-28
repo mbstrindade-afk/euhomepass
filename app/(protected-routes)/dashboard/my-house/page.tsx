@@ -45,7 +45,7 @@ export default function MyHousePage() {
       bathrooms: 2,
       size: '120 m²',
       status: 'Reserved',
-      images: ['/loguinho.png'],
+      images: ['/logoyellowprint-removebg-preview.png'],
       description: 'Beautiful beach house with ocean views, just steps from the sandy beaches of Algarve. Perfect for summer getaways.',
       amenities: ['Wi-Fi', 'Kitchen', 'Pool', 'BBQ', 'Parking'],
       lastUpdated: 'September 10, 2025',
@@ -110,7 +110,7 @@ export default function MyHousePage() {
         <header className="flex justify-between items-center p-4 mb-10 bg-white rounded-lg shadow-md backdrop-blur-sm bg-white/90">
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/loguinho.png" alt="HomePass logo" className="w-40 h-auto rounded" />
+              <img src="/logoyellowprint-removebg-preview.png" alt="HomePass logo" className="w-40 h-auto rounded" />
             </Link>
           </div>
           <nav className="flex items-center gap-6">

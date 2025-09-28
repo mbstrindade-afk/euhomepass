@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('HomePass Landing Page', () => {
+test.describe('EU HomePass Landing Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
@@ -32,8 +32,8 @@ test.describe('HomePass Landing Page', () => {
   });
 
   test('checks presence of pricing text', async ({ page }) => {
-    await expect(page.getByText(/€80/)).toBeVisible();
-    await expect(page.getByText(/€250/)).toBeVisible();
-    await expect(page.getByText(/save €70/i)).toBeVisible();
+    await expect(page.getByText(/€90/)).toBeVisible();
+    await expect(page.getByText(/€270/)).toBeVisible();
+    await expect(page.getByText(/save €90/i)).toBeVisible();
   });
 });

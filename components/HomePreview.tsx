@@ -73,7 +73,7 @@ export default function HomePreview({ listing, showDetails = false }: HomePrevie
           )}
           {listing.euOnly && (
             <div className="bg-blue-500/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-white">
-              EU Only
+              EU/EEA Only
             </div>
           )}
         </div>

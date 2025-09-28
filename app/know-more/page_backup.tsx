@@ -120,8 +120,8 @@ export default function KnowMore() {
               <h3 className="font-semibold mt-2">Q. What plans are available?</h3>
               <h4 className="font-semibold mb-0">A.</h4>
               <ul className="list-disc list-inside ml-4 space-y-1 mt-0">
-                <li>Quarterly Flex — €80: 3 usage months, valid 12 months.</li>
-                <li>Annual — €250: 12 usage months, valid 12 months.</li>
+                <li>Quarterly Flex — €90: 3 usage months, valid 12 months.</li>
+                <li>Annual — €270: 12 usage months, valid 12 months.</li>
                 <li>No booking fees. Insurance included.</li>
               </ul>
 

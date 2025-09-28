@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useAuth } from '../contexts/AuthContext';
-import items from "../components/ItemsData";
+import items from "./data/items";
 
 // Import Google Fonts via CDN
 if (typeof window !== 'undefined') {
@@ -41,33 +41,33 @@ export default function Home() {
       id: "passes",
       question: "How do the passes work?",
       answer: <>
-        <span className="font-medium">Quarterly Pass (€80):</span><br/>
+        EU HomePass is a vibrant community platform where members list their homes and enjoy stays at other members' places across Europe. It's home-swapping reimagined for the modern traveler! Our membership passes give you full access to this exciting exchange:<br/><br/>
+        <span className="font-medium">Quarterly Pass (€90):</span><br/>
         • 3 months validity from purchase date<br/>
         • Access to all platform features<br/>
-        • Community insurance with standard €25 deductible<br/>
+        • Community fund coverage<br/>
         • Ability to list and book homes<br/>
         • Standard support<br/><br/>
-        <span className="font-medium">Annual Pass (€250):</span><br/>
+        <span className="font-medium">Annual Pass (€270):</span><br/>
         • 12 months validity from purchase date<br/>
         • All Quarterly Pass features plus:<br/>
-        • First approved insurance claim with €0 deductible<br/>
         • Priority support<br/>
         • Early access to new features<br/>
-        • Saves €70 compared to purchasing 4 Quarterly passes
+        • Saves €90 compared to purchasing 4 Quarterly passes
       </>
     },
     {
       id: "why-use",
-      question: "Why use HomePass?",
+      question: "Why use EU HomePass?",
       answer: <>
         • Entire homes only — autonomy and comfort;<br/>
         • No booking fees — passes only (Quarterly/Annual).<br/>
         • Flexible months — use your 1 up to 12 months any time within 1 year.<br/>
         • Trust & safety — ID verification, in-app messaging, photo check-in/out.<br/>
-        • Insurance included — up to €1,000/stay (see deductible rules above).<br/>
+        • Utility coverage included — up to €200/month for excess consumption (see coverage rules above).<br/>
         • Utilities covered (Fair Use) — fewer frictions, no monthly reconciliations.<br/>
         • Fair community model — 1:1 reciprocity: offer months, use months.<br/>
-        • EU-only — shared standards, easier paperwork and mobility.
+        • EU/EEA-only — shared standards, easier paperwork and mobility.
       </>
     },
     {
@@ -77,37 +77,51 @@ export default function Home() {
         • List your home and open 1-month availability.<br/>
         • Get 1 month credit for every month you make available (1:1 reciprocity).<br/>
         • Book 1–3 months in another EU home.<br/>
-        • No booking fees, utilities included under Fair Use.<br/>
-        • Community insurance included.<br/>
+        • No booking fees, utility coverage for excess consumption.<br/>
+        • Utility coverage included.<br/>
         • A usage month is deducted at the start date.<br/>
         • Maximum 3 months per stay in the same home.
       </>
     },
     {
-      id: "insurance",
-      question: "How does insurance work?",
+      id: "utility-coverage",
+      question: "How does utility coverage work?",
       answer: <>
-        Insurance is included with your pass. After review, it covers material damage and abnormal utilities consumption up to €1,000 per stay. Minimum approved claim - €50. €25 deductible per approved claim.<br/><br/>
-        <span className="font-medium">Bonus:</span> On the Annual plan, the first approved claim each membership year has €0 deductible.<br/><br/>
+        Utility coverage is included with your pass. It covers excess utility consumption (water, electricity, gas) up to €200 per month. Coverage applies only when excess consumption exceeds €30 above normal usage.<br/><br/>
+        <span className="font-medium">Proof required:</span> 6 months of previous utility bills to establish baseline consumption.<br/><br/>
         <span className="font-medium">What's not covered?</span><br/>
-        Valuables (cash, jewellery, watches, fine art, collectibles, documents, unsecured high-value electronics), normal wear, pre-existing issues, gross negligence, illegal activity, or anything outside the rules. Hosts must remove or lock valuables in off-limits areas.<br/><br/>
+        Property damage, normal utility consumption, bills without proper documentation, or consumption below the €30 threshold.<br/><br/>
         <span className="font-medium">How to claim?</span><br/>
-        Open an in-app ticket within 48h of the event (for utilities, within 14 days of the bill). Add photos and a short description (meter readings if relevant). Approved payouts go to the host.<br/><br/>
+        Open an in-app ticket within 48h of discovery (for utilities, within 14 days of receiving the bill). Provide: 6 months of previous bills, current bill, and evidence of excess consumption. Approved payouts cover only the difference amount.<br/><br/>
         <span className="font-medium">Examples:</span><br/>
-        • €120 damage (Quarterly): payout €95 (120 − 25).<br/>
-        • €120 damage (Annual, first claim this year): €120 (deductible waived).<br/>
-        • €45 damage (Annual): below the €50 threshold for the waiver → no waiver; standard rules apply → payout €20 (45 − 25).<br/>
-        • €40 damage: below the €50 minimum → no payout.
+        • €180 excess consumption: payout €180.<br/>
+        • €25 excess: below the €30 threshold → no payout.<br/>
+        • €60 excess: payout €60.<br/>
+        • No previous bills provided → no payout.
+      </>
+    },
+    {
+      id: "fair-use",
+      question: "Utilities — what is \"Fair Use\"?",
+      answer: <>
+        Guests are expected to use electricity, gas and water reasonably. If a host receives a bill that is clearly above normal for the same period, they can apply to the Community Fund (see below). No off-platform payments.
+      </>
+    },
+    {
+      id: "community-fund",
+      question: "What is the Community Fund?",
+      answer: <>
+        A discretionary platform benefit. We may reimburse verified abnormal utility overages after a completed stay. It's not traditional insurance, not guaranteed, and has caps (maximum limits): €200 per month, €400 per stay, €800 per Host in 12 months. Minimum approved amount €50.
       </>
     },
     {
       id: "host-present",
       question: "Why can't the host be present?",
       answer: <>
-        • HomePass is for entire-home exchanges only.<br/>
+        • EU HomePass is for entire-home exchanges only.<br/>
         • Guests get exclusive use while the host is away.<br/>
         • Protects privacy for all parties.<br/>
-        • Keeps insurance and liability clear.<br/>
+        • Keeps fund coverage and liability clear.<br/>
         • Avoids coliving/tenancy complications.<br/>
         • Shared occupancy isn't permitted.
       </>
@@ -131,36 +145,34 @@ export default function Home() {
       id: "bills",
       question: "Who pays the bills?",
       answer: <>
-        • Hosts pay all utility bills.<br/>
-        • Guests don't pay any utility costs.<br/>
-        • Utilities covered under Fair Use policy.<br/>
-        • Irresponsible consumption may be penalized by reputation impact.<br/>
-        • Excessive usage may trigger insurance claims.
+        • <strong>Each host keeps paying utilities of their own house</strong> — the costs should be more or less the same.<br/>
+        • <strong>Guests enjoy utilities included</strong> under our Fair Use policy.<br/>
+        • <strong>Fair Use means responsible consumption</strong> — similar to what you'd use at home.<br/>
+        • <strong>Community Fund covers genuine excess</strong> (above €30, with 6-month bills proof).<br/>
+        • <strong>Guests who abuse utilities</strong> face reputation penalties and potential suspension.<br/>
+        • <strong>Most stays have zero issues</strong> — our community is respectful and responsible.
       </>
     },
     {
       id: "host-cancels",
       question: "What if the host cancels?",
       answer: <>
-        • Host reputation is negatively impacted.<br/>
-        • Guest is prioritized for new bookings.<br/>
-        • Platform support helps find alternatives.<br/>
-        • Repeated cancellations lead to penalties.<br/>
-        • Severe cases: hosts may lose platform access.<br/>
-        • Guest usage month is returned to their balance.
+        In case of host cancellation or no-show, the guest's usage month is immediately returned to their balance and they are welcome to find another solution from our pool of available homes.<br/><br/>
+        
+        <strong>EU HomePass, being a platform where people list and share their houses, does not act as a hospitality service and therefore has no responsibilities in no-shows or cancellations.</strong><br/><br/>
+        
+        The host's reputation will be negatively impacted, and repeated cancellations lead to penalties. In severe cases, hosts may lose platform access entirely.
       </>
     },
     {
       id: "verification",
       question: "How are members verified?",
       answer: <>
-        • ID verification (passport/national ID).<br/>
-        • EU residence document verification.<br/>
-        • Secure document review by our team.<br/>
-        • Home ownership/rental agreement checks.<br/>
-        • Phone number verification.<br/>
-        • Email verification.<br/>
-        • Profile completeness requirements.
+        • <strong>EU/EEA verified members only.</strong><br/>
+        • <strong>ID & proof of residence required</strong> (2–3 minutes).<br/>
+        • <strong>Hosts: verify your home once</strong> to unlock bookings.<br/>
+        • <strong>We use liveness + document checks</strong> to keep the community safe.<br/>
+        • <strong>We don't store your selfie/video</strong> longer than needed — GDPR compliant.
       </>
     },
     {
@@ -204,7 +216,7 @@ export default function Home() {
         • Always disclose your pets when booking.<br/>
         • Undisclosed pets may result in booking cancellation.<br/>
         • Extra cleaning fees may apply for stays with pets.<br/>
-        • Damage caused by pets is covered under normal insurance terms.
+        • Damage caused by pets is covered under normal fund terms.
       </>
     }
   ];
@@ -233,14 +245,14 @@ export default function Home() {
             </Link>
           </div>
           <div className="flex-1 flex justify-center items-center mt-8 md:mt-0">
-            <img src="/ChatGPT Image Sep 9, 2025, 01_36_41 AM.png" alt="Map of Europe with HomePass houses" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
+            <img src="/ChatGPT Image Sep 9, 2025, 01_36_41 AM.png" alt="Map of Europe with EU HomePass houses" className="w-48 h-48 md:w-64 md:h-64 object-contain" />
           </div>
         </div>
         {/* Badges */}
           <div className="flex flex-wrap gap-3 justify-center mt-2">
-          <span className="inline-flex items-center gap-2 bg-sky-50 text-sky-700 px-3 py-1 rounded-full text-xs font-medium">EU citizens only</span>
+          <span className="inline-flex items-center gap-2 bg-sky-50 text-sky-700 px-3 py-1 rounded-full text-xs font-medium">EU/EEA citizens only</span>
           <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-medium"><span className="text-lg">✅</span> Verified members</span>
-          <span className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium"><span className="text-lg">🛡️</span> Insurance included</span>
+          <span className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium"><span className="text-lg">🛡️</span> Utility coverage included</span>
         </div>
       </section>
 
@@ -257,12 +269,12 @@ export default function Home() {
             <div className="flex-1 bg-white rounded-xl shadow p-5 flex flex-col items-center">
               <img src="/5-removebg-preview.png" alt="Book" className="mb-2 object-contain mx-auto" style={{minWidth: '7cm', width: '13rem', maxHeight: '16rem'}} />
               <h3 className="font-semibold">Book</h3>
-              <p className="mt-2 text-sm text-slate-600 text-center">Book another verified home in another EU country. No rent. Community insurance included.</p>
+              <p className="mt-2 text-sm text-slate-600 text-center">Book another verified home in another EU country. No rent. Utility coverage included.</p>
             </div>
             <div className="flex-1 bg-white rounded-xl shadow p-5 flex flex-col items-center">
               <img src="/6-removebg-preview.png" alt="Live Anywhere" className="mb-2 object-contain mx-auto" style={{minWidth: '7cm', width: '13rem', maxHeight: '16rem'}} />
               <h3 className="font-semibold">Live Anywhere</h3>
-              <p className="text-center text-sm">Discover new places, connect with amazing people, and build unforgettable memories as you explore the European Union.</p>
+              <p className="text-center text-sm">Discover new places, connect with amazing people, and build unforgettable memories as you explore the European Union and European Economic Area.</p>
             </div>
           </div>
         </section>
@@ -273,39 +285,51 @@ export default function Home() {
           <div className="flex justify-center gap-6 mt-8">
             <div className="rounded-2xl border bg-white p-6 shadow-sm flex flex-col items-center w-64">
               <p className="text-lg font-bold text-slate-900">Quarterly</p>
-              <p className="text-2xl font-bold text-slate-900">€80</p>
-              <p className="text-sm text-slate-500">/ 3 months</p>
+              <p className="text-2xl font-bold text-slate-900">€90</p>
+              <p className="text-sm text-slate-500 mb-4">/ 3 months</p>
+              <Link 
+                href={isAuthenticated ? "/payment?plan=quarterly" : "/register"}
+                className="w-full px-4 py-2 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+              >
+                {isAuthenticated ? "Get Quarterly" : "Sign Up"}
+              </Link>
             </div>
             <div className="rounded-2xl border bg-white p-6 shadow-sm flex flex-col items-center w-64">
               <p className="text-lg font-bold text-slate-900">Annual</p>
-              <p className="text-2xl font-bold text-slate-900">€250</p>
+              <p className="text-2xl font-bold text-slate-900">€270</p>
               <p className="text-sm text-slate-500">/12 months</p>
-              <span className="mt-2 px-2 py-1 text-xs text-green-700 bg-green-100 rounded-full">Save €70</span>
+              <span className="mt-2 px-2 py-1 text-xs text-green-700 bg-green-100 rounded-full">Save €90</span>
+              <Link 
+                href={isAuthenticated ? "/payment?plan=annual" : "/register"}
+                className="w-full px-4 py-2 bg-sky-600 text-white rounded-lg font-semibold hover:bg-sky-700 transition-colors mt-4"
+              >
+                {isAuthenticated ? "Get Annual" : "Sign Up"}
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Insurance */}
-        <section id="insurance" className="py-16 sm:py-20 text-center">
-          <h2 className="text-3xl font-extrabold">Community insurance included</h2>
-          <p className="mt-2 text-slate-600 max-w-2xl mx-auto">Simple, transparent coverage for host confidence and guest peace of mind.</p>
+        {/* Fund */}
+        <section id="utility-coverage" className="py-16 sm:py-20 text-center">
+          <h2 className="text-3xl font-extrabold">Fund</h2>
+          <p className="mt-2 text-slate-600 max-w-2xl mx-auto">Coverage for excessive utility consumption for host peace of mind.</p>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
             <div className="hp-card bg-white p-6 rounded-2xl border">
-              <h3 className="font-semibold mb-1">Included in all passes</h3>
-              <p className="text-sm text-slate-600">No add-ons: each subscription contributes to the community fund that covers incidents.</p>
+              <h3 className="font-semibold mb-1">Community Fund</h3>
+              <p className="text-sm text-slate-600">A collective pool created by all EU HomePass members to provide security and peace of mind. Each subscription contributes to this shared fund that protects hosts against excessive utility costs and supports the community.</p>
             </div>
             <div className="hp-card bg-white p-6 rounded-2xl border">
-              <h3 className="font-semibold mb-1">Coverage up to €1,000</h3>
-              <p className="text-sm text-slate-600">Physical damage and abnormal utility consumption during the stay, subject to review.</p>
+              <h3 className="font-semibold mb-1">Coverage up to €200/month</h3>
+              <p className="text-sm text-slate-600">Covers excess utility consumption (water, electricity, gas) above normal usage, with minimum €30 difference required. Must be proven with the last 6 utility bills.</p>
             </div>
             <div className="hp-card bg-white p-6 rounded-2xl border">
               <h3 className="font-semibold mb-1">Transparency</h3>
-              <p className="text-sm text-slate-600">Clear processes and open communication about how the service works.</p>
+              <p className="text-sm text-slate-600">Fair and straightforward processes ensure the fund operates smoothly for everyone's benefit. Our commitment to honest communication builds trust within the community.</p>
             </div>
           </div>
         </section>
 
-        {/* Comunidade */}
+        {/* Community */}
         <section id="community" className="mt-6 text-center">
           <h2 className="text-3xl font-extrabold mb-2">Community</h2>
           <p className="mt-2 text-slate-600">A European network of fair exchange — verified, secure, and active.</p>
@@ -324,22 +348,15 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10">
-                  <div className="bg-white border border-slate-200 rounded-xl shadow-xl p-4 min-w-[200px] max-w-[250px]">
-                    <div className="relative">
-                      <h3 className="font-bold text-slate-900 text-sm mb-2 flex items-center">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-600 text-xs mb-2 leading-relaxed">{item.text}</p>
-                      <div className="border-t border-slate-100 pt-2">
-                        <p className="text-blue-600 font-semibold text-xs">{item.metric}</p>
-                      </div>
-                      {/* Tooltip arrow */}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2">
-                        <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-white"></div>
-                        <div className="w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-l-transparent border-r-transparent border-t-slate-200 absolute top-[-1px] left-1/2 transform -translate-x-1/2"></div>
-                      </div>
+                {/* Simple Clean Tooltip */}
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-3 text-left min-w-[180px] max-w-[200px]">
+                    <h4 className="font-semibold text-gray-900 text-sm mb-1">{item.title}</h4>
+                    <p className="text-gray-600 text-xs mb-2">{item.text}</p>
+                    <div className="text-blue-600 text-xs font-medium">{item.metric}</div>
+                    {/* Simple arrow */}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2">
+                      <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
                     </div>
                   </div>
                 </div>
@@ -394,7 +411,7 @@ export default function Home() {
   <section id="faq" className="mt-16 mb-20 max-w-5xl mx-auto px-4">
     <div className="text-center mb-12">
       <h2 className="text-3xl font-extrabold mb-2">FAQ</h2>
-      <p className="mt-2 text-slate-600">Everything you need to know about HomePass</p>
+      <p className="mt-2 text-slate-600">Everything you need to know about EU HomePass</p>
     </div>
     
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
@@ -409,18 +426,20 @@ export default function Home() {
           >
             <div className="flex items-center gap-4">
               <div className={`flex items-center justify-center w-10 h-10 rounded-full ${selectedFaq === faq.id ? 'bg-emerald-100 text-emerald-600' : 'bg-sky-100 text-sky-600'}`}>
-                {index === 0 && <span className="text-xl">�️</span>}
+                {index === 0 && <span className="text-xl">🎫</span>}
                 {index === 1 && <span className="text-xl">🏠</span>}
                 {index === 2 && <span className="text-xl">🔄</span>}
-                {index === 3 && <span className="text-xl">�️</span>}
-                {index === 4 && <span className="text-xl">�</span>}
-                {index === 5 && <span className="text-xl">�</span>}
-                {index === 6 && <span className="text-xl">�</span>}
+                {index === 3 && <span className="text-xl">⚡</span>}
+                {index === 4 && <span className="text-xl">🔧</span>}
+                {index === 5 && <span className="text-xl">💰</span>}
+                {index === 6 && <span className="text-xl">🚫</span>}
                 {index === 7 && <span className="text-xl">❌</span>}
-                {index === 8 && <span className="text-xl">🔍</span>}
-                {index === 9 && <span className="text-xl">⭐</span>}
-                {index === 10 && <span className="text-xl">⏩</span>}
-                {index === 11 && <span className="text-xl">🐾</span>}
+                {index === 8 && <span className="text-xl">�</span>}
+                {index === 9 && <span className="text-xl">🏃</span>}
+                {index === 10 && <span className="text-xl">✅</span>}
+                {index === 11 && <span className="text-xl">⭐</span>}
+                {index === 12 && <span className="text-xl">⏩</span>}
+                {index === 13 && <span className="text-xl">🐾</span>}
               </div>
               <h3 className="font-bold text-lg text-slate-800">{faq.question}</h3>
             </div>
@@ -459,8 +478,8 @@ export default function Home() {
           <div className="rounded-xl bg-white hp-card p-6">
             <h3 className="text-lg font-semibold">Important Notice</h3>
             <p className="mt-2 text-sm text-orange-700">
-              HomePass is a community platform that facilitates the temporary exchange of homes between EU citizens.
-              HomePass does not provide direct accommodation and is not responsible for cancellations or access failures to the property.
+              EU HomePass is a community platform that facilitates the temporary exchange of homes between EU/EEA citizens.
+              EU HomePass does not provide direct accommodation and is not responsible for cancellations or access failures to the property.
             </p>
             <label className="mt-4 flex items-start gap-3 text-sm text-orange-700">
               <input id="accept" type="checkbox" className="mt-1 h-4 w-4 rounded border-orange-300 text-orange-600 focus:ring-orange-600" />

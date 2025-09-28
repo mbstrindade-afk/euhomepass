@@ -37,7 +37,7 @@ export default function LegalCenter() {
     {
       id: 'analytics',
       title: 'Analytics (opt-in)',
-      description: 'Help us improve HomePass with anonymous data.',
+      description: 'Help us improve EU HomePass with anonymous data.',
       enabled: false
     },
     {
@@ -85,7 +85,7 @@ export default function LegalCenter() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="flex items-center space-x-2">
-                <img src="/loguinho.png" alt="HomePass logo" className="w-24 h-auto rounded" />
+                <img src="/logoyellowprint-removebg-preview.png" alt="EU HomePass logo" className="w-24 h-auto rounded" />
               </div>
             </div>
             
@@ -158,7 +158,7 @@ export default function LegalCenter() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Terms & Conditions</h2>
                 <p className="text-gray-600 mb-4">Summary</p>
                 <p className="text-sm text-gray-600 mb-6">
-                  HomePass is a subscription-based EU community platform for listing and booking home exchanges.
+                  EU HomePass is a subscription-based EU community platform for listing and booking home exchanges.
                 </p>
               </div>
 
@@ -167,11 +167,11 @@ export default function LegalCenter() {
                 <ul className="space-y-3 text-sm text-gray-700">
                   <li className="flex items-start">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    EU citizens only - ID & proof of residence required
+                    EU/EEA citizens only - ID & proof of residence required
                   </li>
                   <li className="flex items-start">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Entire homes only - Host insurance required
+                    Entire homes only - Host coverage required
                   </li>
                   <li className="flex items-start">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -183,7 +183,7 @@ export default function LegalCenter() {
                   </li>
                   <li className="flex items-start">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Valuables: host must remove/lock; not covered by insurance
+                    Valuables: host must remove/lock; not covered by community fund
                   </li>
                   <li className="flex items-start">
                     <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -274,7 +274,7 @@ export default function LegalCenter() {
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex flex-wrap items-center justify-between text-sm text-gray-500">
-            <span>© HomePass - EU Community Platform</span>
+            <span>© EU HomePass - EU Community Platform</span>
             <div className="flex space-x-6 mt-4 lg:mt-0">
               <a href="#" className="hover:text-gray-700">Terms & Conditions</a>
               <a href="#" className="hover:text-gray-700">Privacy Policy</a>

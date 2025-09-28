@@ -33,11 +33,13 @@ export default function CommunitySection() {
               aria-label={`Ver detalhes sobre ${item.title}`}
             >
               <Image 
-                src={item.icon} 
-                alt={item.title} 
-                width={32} 
-                height={32} 
-                className="w-8 h-8"
+           src={`${item.icon}?v=${Date.now()}`} 
+           alt={item.title} 
+           width={32} 
+           height={32} 
+           unoptimized
+           priority
+           className="w-8 h-8"
               />
               
               {/* Tooltip */}

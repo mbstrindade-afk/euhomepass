@@ -1,12 +1,12 @@
 const items = [
-  { icon: "/icons/trust_shield.svg",  title: "Confiança",     text: "Membros verificados (KYC)",         metric: "+1 284 este mês" },
-  { icon: "/icons/handshake.svg",     title: "Comunidade",    text: "Trocamos entre pares na UE",         metric: "22/27 países ativos" },
-  { icon: "/icons/fund_shield.svg",   title: "Fundo/Seguro",  text: "Seguro comunitário incluído",        metric: "até €1 000/estadia" },
-  { icon: "/icons/piggy.svg",         title: "Económico",     text: "Sem renda — só partilha",            metric: "poupança média €XXX/mês" },
-  { icon: "/icons/feedback_star.svg", title: "Feedback",      text: "Avaliação média dos stays",          metric: "★ 4,8/5 · NPS +62" },
-  { icon: "/icons/no-fees.svg",       title: "Transparência", text: "Sem comissões por reserva.",         metric: "Preço fixo: €80 / €250" },
-  { icon: "/icons/gdpr_lock.svg",     title: "Privacidade RGPD", text: "Dados na UE",                     metric: "0 incidentes" },
-  { icon: "/icons/reciprocity.svg",   title: "Reciprocidade", text: "Troca equilibrada 1:1",              metric: "rácio médio 1,12" },
+  { icon: "/test-icon1.png",  title: "Trust",     text: "Verified members",         metric: "+1,284 this month" },
+  { icon: "/test-icon2.png",     title: "Community",    text: "Peer-to-peer exchanges in EU",         metric: "22/27 countries active" },
+  { icon: "/test-icon3.png",   title: "Community Fund",  text: "Community fund included",        metric: "up to €200/stay" },
+  { icon: "/test-icon4.png",         title: "Economic",     text: "No rent — just sharing",            metric: "Cost-effective travel" },
+  { icon: "/test-icon5.png", title: "Feedback",      text: "Average stay rating",          metric: "★ 4.8/5 · Recommendation rate +62" },
+  { icon: "/test-icon6.png",       title: "Transparency", text: "No booking fees.",         metric: "Fixed price: €90 / €270" },
+  { icon: "/test-icon7.png",     title: "GDPR Privacy", text: "Data in EU",                     metric: "0 incidents" },
+  { icon: "/test-icon8.png",   title: "Reciprocity", text: "Balanced 1:1 exchange",              metric: "Fair exchange system" },
 ];
 
 export default items;

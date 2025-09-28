@@ -16,7 +16,7 @@ export default function HouseRules() {
     visitors: 'Allowed with building rules',
     pets: 'Not allowed',
     petRules: '',
-    utilities: 'Standard Fair Use applies',
+    utilities: 'Excess utility coverage applies (up to €200/month)',
     cleaning: '',
     offLimits: '',
     buildingRules: '',
@@ -124,7 +124,7 @@ export default function HouseRules() {
           <div className="w-7 h-7 rounded-full bg-[#0ea5e9] flex items-center justify-center text-white font-extrabold text-sm">
             HP
           </div>
-          <span>HomePass</span>
+          <span>EU HomePass</span>
         </div>
         <nav className="ml-auto flex gap-4">
           <Link href="/dashboard" className="text-[#334155] no-underline font-semibold">Dashboard</Link>
@@ -247,20 +247,20 @@ export default function HouseRules() {
             </div>
             <div className="border border-dashed border-[#c7d2fe] bg-[#f8fafc] rounded-xl p-3 mb-6">
               <strong>Important:</strong> Pet-related issues (damage, cleaning, odors) are handled privately between Host & Guest.
-              HomePass does not mediate, process payments, or cover these under insurance/Fund.
+              EU HomePass does not mediate, process payments, or cover these under community fund.
             </div>
 
             {/* Utilities & Cleaning */}
             <h2 className="text-lg font-semibold mb-3">Utilities & Cleaning</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
               <div className="flex flex-col gap-2">
-                <label className="font-medium">Utilities — Fair Use</label>
+                <label className="font-medium">Utilities — Coverage</label>
                 <select 
                   value={formData.utilities}
                   onChange={(e) => handleInputChange('utilities', e.target.value)}
                   className="border border-[#e5e7eb] rounded-lg px-3 py-3 bg-white"
                 >
-                  <option>Standard Fair Use applies</option>
+                  <option>Excess utility coverage applies (up to €200/month)</option>
                   <option>Custom note</option>
                 </select>
                 <span className="text-xs text-[#64748b]">Abnormal usage can be claimed (per rules). No off-platform payments.</span>
@@ -340,7 +340,7 @@ export default function HouseRules() {
                     onChange={(e) => handleInputChange('confirmValuables', e.target.checked)}
                     className="mt-1"
                   />
-                  <span>I confirm I will remove/lock valuables. I understand valuables are not covered by insurance.</span>
+                  <span>I confirm I will remove/lock valuables. I understand valuables are not covered by community fund.</span>
                 </label>
                 {errors.confirmValuables && (
                   <p className="text-red-600 text-sm ml-7">{errors.confirmValuables}</p>
@@ -366,7 +366,7 @@ export default function HouseRules() {
                     onChange={(e) => handleInputChange('confirmPlatformRules', e.target.checked)}
                     className="mt-1"
                   />
-                  <span>I agree to the platform rules: Entire homes; Max 3 months/home; Fair Use utilities; No off-platform payments.</span>
+                  <span>I agree to the platform rules: Entire homes; Max 3 months/home; Utility coverage available; No off-platform payments.</span>
                 </label>
                 {errors.confirmPlatformRules && (
                   <p className="text-red-600 text-sm ml-7">{errors.confirmPlatformRules}</p>

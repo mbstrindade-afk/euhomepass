@@ -51,9 +51,9 @@ const RulesSummary: React.FC<RulesSummaryProps> = ({ formData }) => {
       </div>
 
       <div className="border-t border-gray-200 mt-4 pt-4">
-        <h3 className="font-semibold mb-2">Insurance & Fund</h3>
+        <h3 className="font-semibold mb-2">Utility Coverage</h3>
         <p className="text-sm text-gray-600 mb-4">
-          Included: up to €1,000/stay; €25 deductible. Annual: first approved claim each year €0 (min €50). 
+          Excess utility coverage: up to €200/month. Coverage applies only when excess exceeds €30 above normal usage (proven with 6 months of previous bills). 
           Pet-related issues are excluded.
         </p>
       </div>

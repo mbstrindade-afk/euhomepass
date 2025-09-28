@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "HomePass — Live Anywhere. Share Everywhere.",
   description: "A primeira comunidade de casas partilhadas por cidadãos da UE — sem renda, sem faturas, com seguro comunitário incluído.",
   icons: {
-    icon: "/loguinho.png",
+    icon: "/logoyellowprint-removebg-preview.png",
   },
   openGraph: {
     title: "HomePass — Live Anywhere. Share Everywhere.",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "HomePass",
     images: [
       {
-        url: "/loguinho.png",
+        url: "/logoyellowprint-removebg-preview.png",
         width: 1200,
         height: 630,
         alt: "HomePass — Live Anywhere. Share Everywhere.",
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <head>
-        <link rel="icon" href="/loguinho.png" />
+        <link rel="icon" href="/logoyellowprint-removebg-preview.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

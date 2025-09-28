@@ -40,8 +40,8 @@ interface DashboardData {
   };
   subscription?: {
     plan: string;
-    status: 'active' | 'pending' | 'expired';
-    renewalDate: string;
+    status: 'active' | 'pending' | 'expired' | 'inactive';
+    renewalDate: string | null;
     features: { name: string; included: boolean; }[];
   };
 }
@@ -134,15 +134,15 @@ export default function Dashboard() {
               latest: { from: 'Sophie', preview: 'Message from Sophie' }
             },
             subscription: {
-              plan: 'Premium',
-              status: 'active',
-              renewalDate: '2026-03-15',
+              plan: 'Free',
+              status: 'inactive',
+              renewalDate: null,
               features: [
-                { name: 'Unlimited house listings', included: true },
-                { name: 'Premium insurance', included: true },
-                { name: 'Priority customer support', included: true },
-                { name: 'Advanced calendar features', included: true },
-                { name: 'Virtual house tours', included: false }
+                { name: 'Browse listings', included: true },
+                { name: 'Contact hosts', included: false },
+                { name: 'Make bookings', included: false },
+                { name: 'List your home', included: false },
+                { name: 'Utility coverage', included: false }
               ]
             }
           });
@@ -176,7 +176,7 @@ export default function Dashboard() {
         <header className="flex justify-between items-center p-4 mb-10 bg-white rounded-lg shadow-md backdrop-blur-sm bg-white/90">
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/loguinho.png" alt="HomePass logo" className="w-40 h-auto rounded" />
+              <img src="/logoyellowprint-removebg-preview.png" alt="HomePass logo" className="w-40 h-auto rounded" />
             </Link>
           </div>
           <nav className="flex items-center gap-6">
@@ -405,7 +405,8 @@ export default function Dashboard() {
                     <h2 className="text-xl font-bold text-gray-800">Your Home</h2>
                   </div>
                   <Link href="/dashboard/my-house"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors">
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors"
+                  >
                     <span>View Details</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -466,82 +467,8 @@ export default function Dashboard() {
                   ))}
                 </div>
               </div>
-            </div>
-            
-            {/* Right Column */}
-            <div className="space-y-8">
-              {/* Exchange History Section */}
-              <div className="bg-white p-6 rounded-xl shadow-md overflow-hidden relative">
-                <div className="absolute -right-10 -top-10 w-32 h-32 bg-amber-50 rounded-full opacity-30"></div>
-                <div className="absolute -left-10 -bottom-10 w-28 h-28 bg-blue-50 rounded-full opacity-30"></div>
-                <div className="flex items-center justify-between mb-6 relative">
-                  <div className="flex items-center gap-3">
-                    <span className="text-amber-600 bg-amber-100 p-2 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                      </svg>
-                    </span>
-                    <h2 className="text-xl font-bold text-gray-800">Your Exchange History</h2>
-                  </div>
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 text-amber-600 hover:bg-amber-100 transition-colors">
-                    <span>View All</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </button>
-                </div>
-                
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 bg-green-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600">
-                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                          <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-800">Insurance Status</h3>
-                        <p className="text-xs text-gray-500">HomePass Protection Plan</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full">
-                      <span className="font-medium text-green-700">Active</span>
-                      {dashboardData.exchange?.insurance && (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-700">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                      )}
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl">
-                    <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                      <h3 className="text-gray-500 text-sm mb-1">Claims Remaining</h3>
-                      <p className="text-3xl font-bold text-blue-600">{dashboardData.exchange?.remainingClaims}</p>
-                    </div>
-                    <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                      <h3 className="text-gray-500 text-sm mb-1">Last Incident</h3>
-                      <p className="font-medium text-gray-700 text-sm">
-                        {dashboardData.exchange?.lastIncident ? 
-                          dashboardData.exchange.lastIncident : 
-                          <span className="text-green-600">No incidents</span>
-                        }
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <Link href="/dashboard/report-issue" className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-[1.01] shadow-sm flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                    </svg>
-                    Report New Issue
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Messages Section */}
+
+              {/* Messages Section - Moved to left column */}
               <div className="bg-white p-6 rounded-xl shadow-md overflow-hidden relative">
                 <div className="absolute -right-10 -top-10 w-32 h-32 bg-purple-50 rounded-full opacity-30"></div>
                 <div className="absolute -left-10 -bottom-10 w-28 h-28 bg-blue-50 rounded-full opacity-30"></div>
@@ -627,6 +554,138 @@ export default function Dashboard() {
                   </div>
                 )}
               </div>
+            </div>
+            
+            {/* Right Column */}
+            <div className="space-y-8">
+              {/* Subscription Section - moved to top */}
+              {dashboardData?.subscription && (
+                <div className="bg-white p-6 rounded-xl shadow-md overflow-hidden relative">
+                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-purple-50 rounded-full opacity-30"></div>
+                  <div className="absolute -left-10 -bottom-10 w-28 h-28 bg-indigo-50 rounded-full opacity-30"></div>
+                  
+                  <div className="flex items-center justify-between mb-6 relative">
+                    <div className="flex items-center gap-3">
+                      <span className="text-purple-600 bg-purple-100 p-2 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                          <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                        </svg>
+                      </span>
+                      <h2 className="text-xl font-bold text-gray-800">Your Subscription</h2>
+                    </div>
+                    <Link href="/payment" className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500 text-white hover:bg-emerald-600 transition-colors">
+                      <span>Get Plan</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </Link>
+                  </div>
+
+                  {dashboardData.subscription.status === 'active' ? (
+                    <div>
+                      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-xl mb-5">
+                        <div className="flex flex-col md:flex-row justify-between">
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className={`inline-flex items-center justify-center px-3 py-1 text-xs font-medium rounded-full ${
+                                dashboardData.subscription.status === 'active' 
+                                  ? 'bg-green-100 text-green-800' 
+                                  : dashboardData.subscription.status === 'pending'
+                                  ? 'bg-yellow-100 text-yellow-800'
+                                  : 'bg-red-100 text-red-800'
+                              }`}>
+                                {dashboardData.subscription.status.charAt(0).toUpperCase() + dashboardData.subscription.status.slice(1)}
+                              </span>
+                              <h3 className="font-bold text-xl text-gray-800">{dashboardData.subscription.plan} Plan</h3>
+                            </div>
+                            <p className="text-gray-600">
+                              {dashboardData.subscription.renewalDate 
+                                ? `Renewal date: ${new Date(dashboardData.subscription.renewalDate).toLocaleDateString()}`
+                                : 'No active subscription'
+                              }
+                            </p>
+                          </div>
+                          <div className="mt-4 md:mt-0">
+                            <Link href="/payment" className="bg-white text-purple-700 border border-purple-200 font-medium py-2 px-4 rounded-lg hover:bg-purple-50 transition-colors shadow-sm">
+                              Upgrade Plan
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <h3 className="font-medium text-gray-700 mb-3">Plan Features:</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {dashboardData.subscription.features.map((feature, index) => (
+                          <div key={index} className="flex items-center gap-2">
+                            {feature.included ? (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-500">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                              </svg>
+                            ) : (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                              </svg>
+                            )}
+                            <span className={feature.included ? 'text-gray-800' : 'text-gray-400'}>{feature.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <div className="bg-gradient-to-r from-emerald-50 to-sky-50 p-6 rounded-xl border border-emerald-100">
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Ready to Start Your HomePass Journey?</h3>
+                        <p className="text-gray-600 mb-6">
+                          Choose a plan to unlock home exchanges across Europe with verified members, 
+                          utility coverage, and no booking fees.
+                        </p>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                          <div className="bg-white p-4 rounded-lg border border-emerald-200">
+                            <div className="text-center">
+                              <h4 className="font-semibold text-emerald-600">Quarterly Flex</h4>
+                              <div className="text-2xl font-bold text-gray-800">€90</div>
+                              <div className="text-sm text-gray-600">3 months usage</div>
+                              <Link 
+                                href="/payment?plan=quarterly"
+                                className="mt-3 block w-full px-4 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition-colors"
+                              >
+                                Choose Plan
+                              </Link>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white p-4 rounded-lg border border-sky-200 relative">
+                            <div className="absolute -top-2 -right-2 bg-sky-500 text-white text-xs px-2 py-1 rounded-full">
+                              Popular
+                            </div>
+                            <div className="text-center">
+                              <h4 className="font-semibold text-sky-600">Annual</h4>
+                              <div className="text-2xl font-bold text-gray-800">€270</div>
+                              <div className="text-sm text-gray-600">12 months usage</div>
+                              <div className="text-xs text-green-600 font-medium">Save €90</div>
+                              <Link 
+                                href="/payment?plan=annual"
+                                className="mt-3 block w-full px-4 py-2 bg-sky-500 text-white rounded-lg font-medium hover:bg-sky-600 transition-colors"
+                              >
+                                Choose Plan
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="text-xs text-gray-500">
+                          ✓ No booking fees • ✓ Utility coverage included • ✓ EU/EEA verified community
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
               
               {/* Coming Exchanges Section */}
               <div className="bg-white p-6 rounded-xl shadow-md overflow-hidden relative">
@@ -736,77 +795,76 @@ export default function Dashboard() {
                 </div>
               </div>
               
-              {/* Subscription Section */}
-              {dashboardData?.subscription && (
-                <div className="bg-white p-6 rounded-xl shadow-md overflow-hidden relative mt-8">
-                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-purple-50 rounded-full opacity-30"></div>
-                  <div className="absolute -left-10 -bottom-10 w-28 h-28 bg-indigo-50 rounded-full opacity-30"></div>
-                  
-                  <div className="flex items-center justify-between mb-6 relative">
-                    <div className="flex items-center gap-3">
-                      <span className="text-purple-600 bg-purple-100 p-2 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-                          <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-                        </svg>
-                      </span>
-                      <h2 className="text-xl font-bold text-gray-800">Your Subscription</h2>
-                    </div>
-                    <Link href="/settings" className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 text-purple-600 hover:bg-purple-100 transition-colors">
-                      <span>Manage Plan</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
+              {/* Exchange History Section - moved below Coming Exchanges */}
+              <div className="bg-white p-6 rounded-xl shadow-md overflow-hidden relative">
+                <div className="absolute -right-10 -top-10 w-32 h-32 bg-amber-50 rounded-full opacity-30"></div>
+                <div className="absolute -left-10 -bottom-10 w-28 h-28 bg-blue-50 rounded-full opacity-30"></div>
+                <div className="flex items-center justify-between mb-6 relative">
+                  <div className="flex items-center gap-3">
+                    <span className="text-amber-600 bg-amber-100 p-2 rounded-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                       </svg>
-                    </Link>
+                    </span>
+                    <h2 className="text-xl font-bold text-gray-800">Your Exchange History</h2>
                   </div>
-                  
-                  <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-xl mb-5">
-                    <div className="flex flex-col md:flex-row justify-between">
+                  <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 text-amber-600 hover:bg-amber-100 transition-colors">
+                    <span>View All</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </button>
+                </div>
+                
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 bg-green-100 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </div>
                       <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className={`inline-flex items-center justify-center px-3 py-1 text-xs font-medium rounded-full ${
-                            dashboardData.subscription.status === 'active' 
-                              ? 'bg-green-100 text-green-800' 
-                              : dashboardData.subscription.status === 'pending'
-                              ? 'bg-yellow-100 text-yellow-800'
-                              : 'bg-red-100 text-red-800'
-                          }`}>
-                            {dashboardData.subscription.status.charAt(0).toUpperCase() + dashboardData.subscription.status.slice(1)}
-                          </span>
-                          <h3 className="font-bold text-xl text-gray-800">{dashboardData.subscription.plan} Plan</h3>
-                        </div>
-                        <p className="text-gray-600">Renewal date: {new Date(dashboardData.subscription.renewalDate).toLocaleDateString()}</p>
+                        <h3 className="font-semibold text-gray-800">Insurance Status</h3>
+                        <p className="text-xs text-gray-500">HomePass Protection Plan</p>
                       </div>
-                      <div className="mt-4 md:mt-0">
-                        <button className="bg-white text-purple-700 border border-purple-200 font-medium py-2 px-4 rounded-lg hover:bg-purple-50 transition-colors shadow-sm">
-                          Upgrade Plan
-                        </button>
-                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 bg-green-100 px-3 py-1 rounded-full">
+                      <span className="font-medium text-green-700">Active</span>
+                      {dashboardData.exchange?.insurance && (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-700">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                      )}
                     </div>
                   </div>
                   
-                  <h3 className="font-medium text-gray-700 mb-3">Plan Features:</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {dashboardData.subscription.features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        {feature.included ? (
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-500">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                          </svg>
-                        ) : (
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="15" y1="9" x2="9" y2="15"></line>
-                            <line x1="9" y1="9" x2="15" y2="15"></line>
-                          </svg>
-                        )}
-                        <span className={feature.included ? 'text-gray-800' : 'text-gray-400'}>{feature.name}</span>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl">
+                    <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                      <h3 className="text-gray-500 text-sm mb-1">Claims Remaining</h3>
+                      <p className="text-3xl font-bold text-blue-600">{dashboardData.exchange?.remainingClaims}</p>
+                    </div>
+                    <div className="text-center p-3 bg-white rounded-lg shadow-sm">
+                      <h3 className="text-gray-500 text-sm mb-1">Last Incident</h3>
+                      <p className="font-medium text-gray-700 text-sm">
+                        {dashboardData.exchange?.lastIncident ? 
+                          dashboardData.exchange.lastIncident : 
+                          <span className="text-green-600">No incidents</span>
+                        }
+                      </p>
+                    </div>
                   </div>
+                  
+                  <Link href="/dashboard/report-issue" className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all transform hover:scale-[1.01] shadow-sm flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    Report New Issue
+                  </Link>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         ) : null}

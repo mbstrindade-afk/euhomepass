@@ -1,8 +1,8 @@
 {
-  "brand": "HomePass",
+  "brand": "EU HomePass",
   "eu_only": "🇪🇺 Só UE",
   "members_verified": "✅ Membros verificados",
-  "insurance_included": "🛡️ Seguro incluído até €1.000/estadia",
+  "fund_included": "🛡️ Fundo comunitário até €1.000/estadia",
   "enter": "Entrar",
   "create_account": "Criar conta",
   "skip_to_content": "Saltar para o conteúdo",
@@ -15,5 +15,5 @@
   "contact": "Contacto",
   "product": "Produto",
   "legal": "Legal",
-  "footer_copyright": "© {{year}} HomePass"
+  "footer_copyright": "© {{year}} EU HomePass"
 }

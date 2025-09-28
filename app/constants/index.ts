@@ -19,7 +19,7 @@ export const NAVIGATION = [
 export const PRICING_PLANS = [
   {
     name: "Quarterly",
-    price: "€80",
+    price: "€90",
     period: "/ 3 meses",
     features: [
       "Acesso ilimitado à plataforma",
@@ -30,9 +30,9 @@ export const PRICING_PLANS = [
   },
   {
     name: "Annual",
-    price: "€250",
+    price: "€270",
     period: "/ ano",
-    savings: "Poupa €70",
+    savings: "Poupa €90",
     features: [
       "Tudo do Quarterly",
       "Suporte prioritário",

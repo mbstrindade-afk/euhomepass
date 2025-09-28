@@ -49,7 +49,7 @@ export default function ManageAvailabilityPage() {
       bathrooms: 2,
       size: '120 m²',
       status: 'Reserved',
-      images: ['/loguinho.png'],
+      images: ['/logoyellowprint-removebg-preview.png'],
       description: 'Beautiful beach house with ocean views, just steps from the sandy beaches of Algarve. Perfect for summer getaways.',
       amenities: ['Wi-Fi', 'Kitchen', 'Pool', 'BBQ', 'Parking'],
       lastUpdated: 'September 10, 2025',

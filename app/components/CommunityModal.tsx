@@ -200,11 +200,11 @@ function getAdditionalDetails(title: string) {
         <div className="space-y-2">
           <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
             <span className="font-medium">Quarterly Pass</span>
-            <span className="text-lg font-bold text-emerald-600">€80</span>
+            <span className="text-lg font-bold text-emerald-600">€90</span>
           </div>
           <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
             <span className="font-medium">Annual Pass</span>
-            <span className="text-lg font-bold text-emerald-600">€250</span>
+            <span className="text-lg font-bold text-emerald-600">€270</span>
           </div>
         </div>
         <p className="text-sm text-gray-600">Sem comissões ocultas ou taxas adicionais</p>
