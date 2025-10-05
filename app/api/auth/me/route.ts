@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UserRepository } from '../../../../lib/db';
+import { UserRepository } from '../../../../lib/db-clean';
 import { verifyToken } from '../../../../lib/jwt';
 
 export const runtime = 'nodejs';
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
 
-    const user = UserRepository.findByEmail(decodedToken.email);
+    const user = await UserRepository.findByEmail(decodedToken.email);
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
@@ -28,6 +28,7 @@ export async function GET(request: NextRequest) {
       user: {
         id: user.id,
         email: user.email,
+        isAdmin: user.isAdmin,
       },
     });
   } catch (error) {

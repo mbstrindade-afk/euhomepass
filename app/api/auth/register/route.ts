@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { UserRepository, UserCredentials } from '../../../../lib/db';
+import { UserRepository, UserCredentials } from '../../../../lib/db-clean';
 
 export async function POST(request: Request) {
   console.log('API: Register endpoint called');
@@ -18,9 +18,8 @@ export async function POST(request: Request) {
     }
 
     // Check if user already exists
-    const existingUser = UserRepository.findByEmail(body.email);
+    const existingUser = await UserRepository.findByEmail(body.email);
     console.log('API: Existing user check:', { exists: !!existingUser });
-    
     if (existingUser) {
       return NextResponse.json(
         { error: 'User with this email already exists' },
@@ -30,9 +29,8 @@ export async function POST(request: Request) {
 
     // Create user
     console.log('API: Attempting to create user');
-    const newUser = UserRepository.create(body);
+    const newUser = await UserRepository.create(body);
     console.log('API: User creation result:', { success: !!newUser });
-    
     if (!newUser) {
       return NextResponse.json(
         { error: 'Failed to create user' },

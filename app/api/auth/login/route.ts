@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { UserRepository } from '../../../../lib/db';
+import { UserRepository } from '../../../../lib/db-clean';
 import { generateToken } from '../../../../lib/jwt';
 
 export const runtime = 'nodejs';
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     }
 
     // Validate credentials
-    const isValidCredentials = UserRepository.validateCredentials(email, password);
+    const isValidCredentials = await UserRepository.validateCredentials(email, password);
     if (!isValidCredentials) {
       return NextResponse.json(
         { error: 'Invalid email or password' },
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     // Get user data
-    const user = UserRepository.findByEmail(email);
+    const user = await UserRepository.findByEmail(email);
     if (!user) {
       return NextResponse.json(
         { error: 'User not found' },
@@ -45,6 +45,7 @@ export async function POST(request: Request) {
       user: {
         id: user.id,
         email: user.email,
+        isAdmin: user.isAdmin ?? false,
       },
       token
     });

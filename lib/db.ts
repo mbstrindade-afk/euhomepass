@@ -29,45 +29,23 @@ if (db) {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT UNIQUE NOT NULL,
       password TEXT NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-} else {
-  console.warn('Using volatile in-memory user repository. Data will not persist between runs.');
-}
-
-const inMemoryUsers: User[] = [];
-let inMemoryId = 1;
-
 // User model
-export interface User {
-  id: number;
   email: string;
-  password?: string; // Optional when returning to client
-  created_at?: string;
-}
-
-export interface UserCredentials {
-  email: string;
-  password: string;
-}
-
-// User repository
-export const UserRepository = {
-  // Create a new user
-  create: (userData: UserCredentials): User | null => {
     console.log('DB: Creating user with email:', userData.email);
     
     try {
       const hashedPassword = bcrypt.hashSync(userData.password, 10);
       console.log('DB: Password hashed successfully');
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
       if (!db) {
         const existing = inMemoryUsers.find((user) => user.email === userData.email);
-        if (existing) {
+  id: string;
           console.warn('In-memory DB: duplicate email detected');
           return null;
-        }
+  createdAt?: string;
 
         const newUser: User = {
           id: inMemoryId++,
@@ -77,35 +55,22 @@ export const UserRepository = {
         };
         inMemoryUsers.push(newUser);
         return { id: newUser.id, email: newUser.email };
-      }
+  create: async (userData: UserCredentials): Promise<User | null> => {
 
       const stmt = db.prepare(`
-        INSERT INTO users (email, password) 
-        VALUES (?, ?)
-      `);
-      
-      console.log('DB: Executing SQL insert');
-      const result = stmt.run(userData.email, hashedPassword);
-      console.log('DB: SQL insert result:', { changes: result.changes, lastInsertRowid: result.lastInsertRowid });
-      
-      if (result.lastInsertRowid) {
-        console.log('DB: User created successfully with ID:', result.lastInsertRowid);
-        return {
-          id: result.lastInsertRowid as number,
+    try {
+      const hashedPassword = bcrypt.hashSync(userData.password, 10);
+      const user = await prisma.user.create({
+        data: {
           email: userData.email,
-        };
-      }
-      console.log('DB: User creation failed - no lastInsertRowid');
-      return null;
+          password: hashedPassword,
+        },
+      });
+      return { id: user.id, email: user.email, createdAt: user.createdAt.toISOString() };
     } catch (error) {
       console.error('DB: Error creating user:', error);
       return null;
     }
-  },
-
-  // Find a user by email
-  findByEmail: (email: string): User | null => {
-    try {
       if (!db) {
         const user = inMemoryUsers.find((candidate) => candidate.email === email);
         return user ? { ...user } : null;

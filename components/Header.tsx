@@ -8,7 +8,7 @@ import { useSmoothScroll } from '../hooks/useSmoothScroll';
 import { FiHelpCircle, FiMessageCircle } from 'react-icons/fi';
 
 export default function Header() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const { unreadCount } = useChat();
   const { scrollToSection } = useSmoothScroll();
   const router = useRouter();
@@ -99,6 +99,12 @@ export default function Header() {
                   <Link href="/dashboard" className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 transition-colors text-sm">
                     Dashboard
                   </Link>
+                  {/* Menu admin visível apenas para admin */}
+                  {user && user.isAdmin && (
+                    <Link href="/admin-backoffice/dashboard" className="px-4 py-2 rounded-full border border-amber-500 text-amber-700 font-semibold hover:bg-amber-100 transition-colors text-sm">
+                      Admin Dashboard
+                    </Link>
+                  )}
                   <Link href="/listing" className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 transition-colors text-sm">
                     Listing
                   </Link>

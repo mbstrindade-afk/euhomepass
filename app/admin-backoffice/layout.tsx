@@ -4,6 +4,7 @@ import Link from "next/link";
 export default function AdminBackofficeLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div style={{background: 'yellow', padding: '10px', color: 'black', fontWeight: 'bold'}}>DIAGNÓSTICO: Layout admin-backoffice está a ser renderizado</div>
       <header className="bg-blue-900 text-white py-4 px-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold">EU HomePass Backoffice</h1>
         <nav className="space-x-6">

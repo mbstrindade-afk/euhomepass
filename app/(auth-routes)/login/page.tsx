@@ -13,12 +13,16 @@ export default function LoginPage() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { login, isAuthenticated } = useAuth();
+  const { login, isAuthenticated, user } = useAuth();
   const router = useRouter();
 
-  // If already authenticated, redirect to dashboard
+  // If already authenticated, redirect to dashboard or admin
   if (isAuthenticated) {
-    router.push('/dashboard');
+    if (user?.isAdmin) {
+      router.push('/admin-backoffice');
+    } else {
+      router.push('/dashboard');
+    }
     return null;
   }
 
@@ -42,12 +46,12 @@ export default function LoginPage() {
       setIsError(false);
       
       // Simula o login direto
-      const mockUser = { id: 1, email: "test@example.com" };
+      const mockUser = { id: 1, email: "test@example.com", isAdmin: false };
       localStorage.setItem('auth_token', 'test-token-123');
       localStorage.setItem('user', JSON.stringify(mockUser));
       
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        window.location.href = user?.isAdmin ? "/admin-backoffice" : "/dashboard";
       }, 1000);
       return;
     }
@@ -59,7 +63,7 @@ export default function LoginPage() {
     if (result.success) {
       setMessage(result.message);
       // Força o redirecionamento
-      window.location.href = "/dashboard";
+      window.location.href = user?.isAdmin ? "/admin-backoffice" : "/dashboard";
     } else {
       setMessage(result.message);
       setIsError(true);

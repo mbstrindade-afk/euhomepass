@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
-  user: { id: number; email: string } | null;
+  user: { id: number; email: string; isAdmin?: boolean } | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<{ success: boolean; message: string }>;
@@ -15,7 +15,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<{ id: number; email: string } | null>(null);
+  const [user, setUser] = useState<{ id: number; email: string; isAdmin?: boolean } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
@@ -74,9 +74,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(data.user);
         // Store token in localStorage
         localStorage.setItem('auth_token', data.token);
-        // Delay to ensure state updates properly
+        // Redireciona admin para backoffice
         setTimeout(() => {
-          router.push('/dashboard');
+          if (data.user?.isAdmin) {
+            router.push('/admin-backoffice');
+          } else {
+            router.push('/dashboard');
+          }
         }, 100);
         return { success: true, message: 'Login successful!' };
       } else {

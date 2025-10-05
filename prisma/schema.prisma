@@ -43,9 +43,11 @@ model User {
   referredBy    User?   @relation("UserReferrals", fields: [referredById], references: [id])
   referredById  String?
   hasListedHome Boolean @default(false)
+  isAdmin Boolean @default(false)
   rewards    Reward[]
   passes     Pass[]
   complaints Complaint[]
+  fundTransactions FundTransaction[]
   // Chat related fields
   sentMessages     Message[]      @relation("SentMessages")
   receivedMessages Message[]      @relation("ReceivedMessages")
@@ -66,6 +68,18 @@ model Session {
   userAgent String?
   ip        String?
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// FundTransaction deve estar fora de qualquer outro modelo
+
+model FundTransaction {
+  id          String   @id @default(cuid())
+  type        String   // 'entry' ou 'exit'
+  amount      Float
+  description String?
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
 }
 
 model PrivacySettings {

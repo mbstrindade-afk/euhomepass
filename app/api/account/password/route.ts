@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { UserRepository } from '../../../../lib/db';
+import { UserRepository } from '../../../../lib/db-clean';
 import bcrypt from 'bcryptjs';
 
 export async function POST(req: NextRequest) {
@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 		if (!email || !currentPassword || !newPassword) {
 			return NextResponse.json({ error: 'Missing fields.' }, { status: 400 });
 		}
-		const user = UserRepository.findByEmail(email);
+		const user = await UserRepository.findByEmail(email);
 		if (!user || !user.password) {
 			return NextResponse.json({ error: 'User not found.' }, { status: 404 });
 		}
@@ -19,8 +19,7 @@ export async function POST(req: NextRequest) {
 		if (newPassword.length < 8) {
 			return NextResponse.json({ error: 'New password must be at least 8 characters.' }, { status: 400 });
 		}
-		const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
-		const updated = UserRepository.updatePassword(email, hashedNewPassword);
+		const updated = await UserRepository.updatePassword(email, newPassword);
 		if (!updated) {
 			return NextResponse.json({ error: 'Failed to update password.' }, { status: 500 });
 		}

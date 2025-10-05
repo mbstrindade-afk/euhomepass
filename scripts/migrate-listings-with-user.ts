@@ -1,0 +1,258 @@
+// Script para criar usuário padrão e migrar listings do mock para o banco de dados via Prisma
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+const userListings = [
+  {
+    title: "Home in Porto",
+    description: "Available home in Porto",
+    city: "Porto",
+    country: "Portugal",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-08-15"),
+    updatedAt: new Date("2024-09-10")
+  },
+  {
+    title: "Home in Barcelona",
+    description: "Available home in Barcelona",
+    city: "Barcelona",
+    country: "Spain",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-07-20"),
+    updatedAt: new Date("2024-09-05")
+  },
+  {
+    title: "Home in Amsterdam",
+    description: "Available home in Amsterdam",
+    city: "Amsterdam",
+    country: "Netherlands",
+    type: "House",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-06-10"),
+    updatedAt: new Date("2024-08-30")
+  },
+  {
+    title: "Home in Paris",
+    description: "Available home in Paris",
+    city: "Paris",
+    country: "France",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-05-25"),
+    updatedAt: new Date("2024-09-01")
+  },
+  {
+    title: "Home in Rome",
+    description: "Available home in Rome",
+    city: "Rome",
+    country: "Italy",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-04-18"),
+    updatedAt: new Date("2024-08-20")
+  },
+  {
+    title: "Home in Copenhagen",
+    description: "Available home in Copenhagen",
+    city: "Copenhagen",
+    country: "Denmark",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-03-12"),
+    updatedAt: new Date("2024-08-15")
+  },
+  {
+    title: "Home in Prague",
+    description: "Available home in Prague",
+    city: "Prague",
+    country: "Czech Republic",
+    type: "House",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-02-28"),
+    updatedAt: new Date("2024-07-25")
+  },
+  {
+    title: "Home in Vienna",
+    description: "Available home in Vienna",
+    city: "Vienna",
+    country: "Austria",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-01-20"),
+    updatedAt: new Date("2024-07-10")
+  },
+  {
+    title: "Home in Lisbon",
+    description: "Available home in Lisbon",
+    city: "Lisbon",
+    country: "Portugal",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2024-01-05"),
+    updatedAt: new Date("2024-06-30")
+  },
+  {
+    title: "Home in Stockholm",
+    description: "Available home in Stockholm",
+    city: "Stockholm",
+    country: "Sweden",
+    type: "Apartment",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2023-12-15"),
+    updatedAt: new Date("2024-06-15")
+  },
+  {
+    title: "Home in Brussels",
+    description: "Available home in Brussels",
+    city: "Brussels",
+    country: "Belgium",
+    type: "House",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2023-11-20"),
+    updatedAt: new Date("2024-05-20")
+  },
+  {
+    title: "Home in Dublin",
+    description: "Available home in Dublin",
+    city: "Dublin",
+    country: "Ireland",
+    type: "House",
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    images: ["/home.svg"],
+    amenities: [],
+    price: { amount: 0, currency: "€", period: "month" },
+    hostRating: 0,
+    isActive: true,
+    isVerified: true,
+    euOnly: true,
+    createdAt: new Date("2023-10-10"),
+    updatedAt: new Date("2024-05-05")
+  }
+];
+
+async function migrateListings() {
+  // Cria usuário padrão
+  const user = await prisma.user.upsert({
+    where: { email: "mockhost@homepass.com" },
+    update: {},
+    create: {
+      email: "mockhost@homepass.com",
+      password: "mockpass",
+      name: "Mock Host",
+      referralCode: "mockhost2025"
+    }
+  });
+
+  for (const listing of userListings) {
+    await prisma.listing.create({ data: { ...listing, hostId: user.id } });
+    console.log(`Listing migrada: ${listing.title}`);
+  }
+  await prisma.$disconnect();
+  console.log('Migração concluída!');
+}
+
+migrateListings();
